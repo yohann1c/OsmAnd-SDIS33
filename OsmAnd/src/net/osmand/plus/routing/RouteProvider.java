@@ -1331,6 +1331,8 @@ public class RouteProvider {
 			mode = "foot"; //$NON-NLS-1$
 		} else if (params.mode.isDerivedRoutingFrom(ApplicationMode.BICYCLE)) {
 			mode = "bicycle"; //$NON-NLS-1$
+		} else if (params.mode.isDerivedRoutingFrom(ApplicationMode.VSAV)) {
+			mode = "VSAV"; //$NON-NLS-1$
 		} else {
 			mode = "motorcar"; //$NON-NLS-1$
 		}

@@ -1,6 +1,7 @@
 package net.osmand.plus.settings.backend;
 
 import static net.osmand.plus.settings.backend.ApplicationMode.AIRCRAFT;
+import static net.osmand.plus.settings.backend.ApplicationMode.VSAV;
 import static net.osmand.plus.settings.backend.ApplicationMode.BICYCLE;
 import static net.osmand.plus.settings.backend.ApplicationMode.BOAT;
 import static net.osmand.plus.settings.backend.ApplicationMode.CAR;
@@ -79,14 +80,14 @@ public class WidgetsAvailabilityHelper {
 
 	public static void initRegVisibility() {
 		ApplicationMode[] exceptDefault = {CAR, BICYCLE, PEDESTRIAN, PUBLIC_TRANSPORT, BOAT,
-				AIRCRAFT, SKI, TRUCK, MOTORCYCLE, HORSE, MOPED, TRAIN};
+				AIRCRAFT, SKI, TRUCK, MOTORCYCLE, HORSE, MOPED, TRAIN, VSAV};
 		ApplicationMode[] all = null;
 		ApplicationMode[] none = {};
 
 		// left
-		ApplicationMode[] nextTurnSet = {CAR, BICYCLE, BOAT, SKI, TRUCK, MOTORCYCLE, HORSE, MOPED};
+		ApplicationMode[] nextTurnSet = {CAR, BICYCLE, BOAT, SKI, TRUCK, MOTORCYCLE, HORSE, MOPED, VSAV};
 		ApplicationMode[] smallNextTurnSet = {PEDESTRIAN, PUBLIC_TRANSPORT, AIRCRAFT, TRAIN};
-		ApplicationMode[] secondNextTurnSet = {CAR, BICYCLE, PEDESTRIAN, BOAT, SKI, TRUCK, MOTORCYCLE, HORSE, MOPED};
+		ApplicationMode[] secondNextTurnSet = {CAR, BICYCLE, PEDESTRIAN, BOAT, SKI, TRUCK, MOTORCYCLE, HORSE, MOPED, VSAV};
 
 		regWidgetVisibility(NEXT_TURN, nextTurnSet);
 		regWidgetVisibility(SMALL_NEXT_TURN, smallNextTurnSet);

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public enum ProfileIcons {
 	DEFAULT(R.drawable.ic_world_globe_dark, R.string.app_mode_default, "ic_world_globe_dark"),
 	CAR(R.drawable.ic_action_car_dark, R.string.app_mode_car, "ic_action_car_dark"),
+	VSAV(R.drawable.ic_action_campervan, R.string.app_mode_car, "ic_action_car_dark"),
 	TAXI(R.drawable.ic_action_taxi, R.string.app_mode_taxi, "ic_action_taxi"),
 	TRUCK(R.drawable.ic_action_truck_dark, R.string.app_mode_truck, "ic_action_truck_dark"),
 	SHUTTLE_BUS(R.drawable.ic_action_shuttle_bus, R.string.app_mode_shuttle_bus, "ic_action_shuttle_bus"),

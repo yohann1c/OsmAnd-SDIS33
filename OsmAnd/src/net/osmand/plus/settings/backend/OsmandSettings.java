@@ -921,7 +921,7 @@ public class OsmandSettings {
 
 	public final CommonPreference<Integer> NUMBER_OF_STARTS_FIRST_XMAS_SHOWN = new IntPreference(this, "number_of_starts_first_xmas_shown", 0).makeGlobal();
 
-	public final OsmandPreference<String> AVAILABLE_APP_MODES = new StringPreference(this, "available_application_modes", "car,bicycle,pedestrian,public_transport,") {
+	public final OsmandPreference<String> AVAILABLE_APP_MODES = new StringPreference(this, "available_application_modes", "car,pedestrian,boat,VSAV,") {
 
 		@Override
 		public void readFromJson(JSONObject json, ApplicationMode appMode) throws JSONException {
@@ -1168,6 +1168,7 @@ public class OsmandSettings {
 	{
 		DEFAULT_SPEED.setModeDefaultValue(ApplicationMode.DEFAULT, 1.5f);
 		DEFAULT_SPEED.setModeDefaultValue(ApplicationMode.CAR, 12.5f);
+		DEFAULT_SPEED.setModeDefaultValue(ApplicationMode.VSAV, 12.5f);
 		DEFAULT_SPEED.setModeDefaultValue(ApplicationMode.BICYCLE, 2.77f);
 		DEFAULT_SPEED.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 1.11f);
 		DEFAULT_SPEED.setModeDefaultValue(ApplicationMode.BOAT, 1.38f);
@@ -1196,6 +1197,7 @@ public class OsmandSettings {
 	{
 		ICON_RES_NAME.setModeDefaultValue(ApplicationMode.DEFAULT, "ic_world_globe_dark");
 		ICON_RES_NAME.setModeDefaultValue(ApplicationMode.CAR, "ic_action_car_dark");
+		ICON_RES_NAME.setModeDefaultValue(ApplicationMode.VSAV, "ic_action_campervan");
 		ICON_RES_NAME.setModeDefaultValue(ApplicationMode.BICYCLE, "ic_action_bicycle_dark");
 		ICON_RES_NAME.setModeDefaultValue(ApplicationMode.PEDESTRIAN, "ic_action_pedestrian_dark");
 		ICON_RES_NAME.setModeDefaultValue(ApplicationMode.PUBLIC_TRANSPORT, "ic_action_bus_dark");
@@ -1229,6 +1231,7 @@ public class OsmandSettings {
 
 	{
 		ROUTING_PROFILE.setModeDefaultValue(ApplicationMode.CAR, "car");
+		ROUTING_PROFILE.setModeDefaultValue(ApplicationMode.VSAV, "VSAV");
 		ROUTING_PROFILE.setModeDefaultValue(ApplicationMode.BICYCLE, "bicycle");
 		ROUTING_PROFILE.setModeDefaultValue(ApplicationMode.PEDESTRIAN, "pedestrian");
 		ROUTING_PROFILE.setModeDefaultValue(ApplicationMode.PUBLIC_TRANSPORT, PUBLIC_TRANSPORT_KEY);
@@ -1263,6 +1266,7 @@ public class OsmandSettings {
 	{
 		NAVIGATION_ICON.setModeDefaultValue(ApplicationMode.DEFAULT, LocationIcon.MOVEMENT_DEFAULT.name());
 		NAVIGATION_ICON.setModeDefaultValue(ApplicationMode.CAR, LocationIcon.MOVEMENT_DEFAULT.name());
+		NAVIGATION_ICON.setModeDefaultValue(ApplicationMode.VSAV, LocationIcon.MOVEMENT_DEFAULT.name());
 		NAVIGATION_ICON.setModeDefaultValue(ApplicationMode.BICYCLE, LocationIcon.MOVEMENT_DEFAULT.name());
 		NAVIGATION_ICON.setModeDefaultValue(ApplicationMode.BOAT, LocationIcon.MOVEMENT_NAUTICAL.name());
 		NAVIGATION_ICON.setModeDefaultValue(ApplicationMode.AIRCRAFT, LocationIcon.MOVEMENT_DEFAULT.name());
@@ -1275,6 +1279,7 @@ public class OsmandSettings {
 	{
 		LOCATION_ICON.setModeDefaultValue(ApplicationMode.DEFAULT, LocationIcon.STATIC_DEFAULT.name());
 		LOCATION_ICON.setModeDefaultValue(ApplicationMode.CAR, LocationIcon.STATIC_CAR.name());
+		LOCATION_ICON.setModeDefaultValue(ApplicationMode.VSAV, LocationIcon.STATIC_DEFAULT.name());
 		LOCATION_ICON.setModeDefaultValue(ApplicationMode.BICYCLE, LocationIcon.STATIC_BICYCLE.name());
 		LOCATION_ICON.setModeDefaultValue(ApplicationMode.BOAT, LocationIcon.STATIC_DEFAULT.name());
 		LOCATION_ICON.setModeDefaultValue(ApplicationMode.AIRCRAFT, LocationIcon.STATIC_CAR.name());
@@ -1298,6 +1303,7 @@ public class OsmandSettings {
 		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.AIRCRAFT, 10);
 		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.SKI, 11);
 		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.HORSE, 12);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.VSAV, 13);
 	}
 
 	public final CommonPreference<Integer> APP_MODE_VERSION = new IntPreference(this, "app_mode_version", 0).makeProfile().cache();
@@ -1462,6 +1468,7 @@ public class OsmandSettings {
 
 	{
 		AUTO_ZOOM_MAP_SCALE.setModeDefaultValue(ApplicationMode.CAR, AutoZoomMap.FAR);
+		AUTO_ZOOM_MAP_SCALE.setModeDefaultValue(ApplicationMode.VSAV, AutoZoomMap.FAR);
 		AUTO_ZOOM_MAP_SCALE.setModeDefaultValue(ApplicationMode.BICYCLE, AutoZoomMap.CLOSE);
 		AUTO_ZOOM_MAP_SCALE.setModeDefaultValue(ApplicationMode.PEDESTRIAN, AutoZoomMap.CLOSE);
 	}
@@ -1482,6 +1489,7 @@ public class OsmandSettings {
 
 	{
 		SNAP_TO_ROAD.setModeDefaultValue(ApplicationMode.CAR, true);
+		SNAP_TO_ROAD.setModeDefaultValue(ApplicationMode.VSAV, true);
 		SNAP_TO_ROAD.setModeDefaultValue(ApplicationMode.BICYCLE, true);
 		SNAP_TO_ROAD.setModeDefaultValue(ApplicationMode.PEDESTRIAN, true);
 	}
@@ -1556,12 +1564,14 @@ public class OsmandSettings {
 
 	{
 		SHOW_TRAFFIC_WARNINGS.setModeDefaultValue(ApplicationMode.CAR, true);
+		SHOW_TRAFFIC_WARNINGS.setModeDefaultValue(ApplicationMode.VSAV, true);
 	}
 
 	public final CommonPreference<Boolean> SHOW_SPEEDOMETER = new BooleanPreference(this, "show_speedometer", false).makeProfile().cache();
 
 	{
 		SHOW_SPEEDOMETER.setModeDefaultValue(ApplicationMode.CAR, true);
+		SHOW_SPEEDOMETER.setModeDefaultValue(ApplicationMode.VSAV, true);
 		SHOW_SPEEDOMETER.setModeDefaultValue(ApplicationMode.TRUCK, true);
 		SHOW_SPEEDOMETER.setModeDefaultValue(ApplicationMode.MOTORCYCLE, true);
 		SHOW_SPEEDOMETER.setModeDefaultValue(ApplicationMode.MOPED, true);
@@ -1571,6 +1581,7 @@ public class OsmandSettings {
 
 	{
 		SPEEDOMETER_SIZE.setModeDefaultValue(ApplicationMode.CAR, SMALL);
+		SPEEDOMETER_SIZE.setModeDefaultValue(ApplicationMode.VSAV, SMALL);
 	}
 
 	public final CommonPreference<Boolean> SHOW_SPEED_LIMIT_WARNINGS = new BooleanPreference(this, "show_speed_limit_warnings", false).makeProfile().cache();
@@ -1579,12 +1590,14 @@ public class OsmandSettings {
 
 	{
 		SHOW_PEDESTRIAN.setModeDefaultValue(ApplicationMode.CAR, true);
+		SHOW_PEDESTRIAN.setModeDefaultValue(ApplicationMode.VSAV, true);
 	}
 
 	public final CommonPreference<Boolean> SHOW_TUNNELS = new BooleanPreference(this, "show_tunnels", false).makeProfile().cache();
 
 	{
 		SHOW_TUNNELS.setModeDefaultValue(ApplicationMode.CAR, true);
+		SHOW_TUNNELS.setModeDefaultValue(ApplicationMode.VSAV, true);
 	}
 
 	public final OsmandPreference<Boolean> SHOW_CAMERAS = new BooleanPreference(this, "show_cameras", false).makeProfile().cache();
@@ -1661,6 +1674,7 @@ public class OsmandSettings {
 		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.BICYCLE, "road_cycling");
 		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.BOAT, "motorboat");
 		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.CAR, "car");
+		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.VSAV, "car");
 		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.HORSE, "horse_riding");
 		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.MOPED, "motor_scooter");
 		CURRENT_TRACK_ROUTE_ACTIVITY.setModeDefaultValue(ApplicationMode.PEDESTRIAN, "walking");
@@ -1676,6 +1690,7 @@ public class OsmandSettings {
 
 	{
 		SAVE_TRACK_INTERVAL.setModeDefaultValue(ApplicationMode.CAR, 3000);
+		SAVE_TRACK_INTERVAL.setModeDefaultValue(ApplicationMode.VSAV, 3000);
 		SAVE_TRACK_INTERVAL.setModeDefaultValue(ApplicationMode.BICYCLE, 5000);
 		SAVE_TRACK_INTERVAL.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 10000);
 	}
@@ -1761,6 +1776,7 @@ public class OsmandSettings {
 
 	{
 		AUTO_FOLLOW_ROUTE.setModeDefaultValue(ApplicationMode.CAR, 15);
+		AUTO_FOLLOW_ROUTE.setModeDefaultValue(ApplicationMode.VSAV, 15);
 		AUTO_FOLLOW_ROUTE.setModeDefaultValue(ApplicationMode.BICYCLE, 15);
 		AUTO_FOLLOW_ROUTE.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 0);
 	}
@@ -1770,6 +1786,7 @@ public class OsmandSettings {
 
 	{
 		KEEP_INFORMING.setModeDefaultValue(ApplicationMode.CAR, 0);
+		KEEP_INFORMING.setModeDefaultValue(ApplicationMode.VSAV, 0);
 		KEEP_INFORMING.setModeDefaultValue(ApplicationMode.BICYCLE, 0);
 		KEEP_INFORMING.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 0);
 	}
@@ -1780,6 +1797,7 @@ public class OsmandSettings {
 
 	{
 		TURN_SCREEN_ON_TIME_INT.setModeDefaultValue(ApplicationMode.CAR, 0);
+		TURN_SCREEN_ON_TIME_INT.setModeDefaultValue(ApplicationMode.VSAV, 0);
 		TURN_SCREEN_ON_TIME_INT.setModeDefaultValue(ApplicationMode.BICYCLE, 0);
 		TURN_SCREEN_ON_TIME_INT.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 0);
 	}
@@ -1788,6 +1806,7 @@ public class OsmandSettings {
 
 	{
 		TURN_SCREEN_ON_SENSOR.setModeDefaultValue(ApplicationMode.CAR, false);
+		TURN_SCREEN_ON_SENSOR.setModeDefaultValue(ApplicationMode.VSAV, false);
 		TURN_SCREEN_ON_SENSOR.setModeDefaultValue(ApplicationMode.BICYCLE, false);
 		TURN_SCREEN_ON_SENSOR.setModeDefaultValue(ApplicationMode.PEDESTRIAN, false);
 	}
@@ -1808,6 +1827,7 @@ public class OsmandSettings {
 
 	{
 		ROTATE_MAP.setModeDefaultValue(ApplicationMode.CAR, ROTATE_MAP_BEARING);
+		ROTATE_MAP.setModeDefaultValue(ApplicationMode.VSAV, ROTATE_MAP_BEARING);
 		ROTATE_MAP.setModeDefaultValue(ApplicationMode.BICYCLE, ROTATE_MAP_BEARING);
 		ROTATE_MAP.setModeDefaultValue(ApplicationMode.PEDESTRIAN, ROTATE_MAP_BEARING);
 	}

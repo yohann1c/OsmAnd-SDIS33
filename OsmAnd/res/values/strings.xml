@@ -2953,6 +2953,7 @@ You need to activate the sensor so OsmAnd can find it.</string>
     <string name="select_base_profile_dialog_message">Base your custom profile on one of the default app profiles, this defines the basic setup like default visibility of widgets and units of speed and distance. These are the default app profiles, together with examples of custom profiles they may be extended to:</string>
     <string name="select_nav_profile_dialog_title">Select navigation type</string>
     <string name="base_profile_descr_car">Car, truck, motorcycle</string>
+    <string name="base_profile_descr_VSAV">VSAV</string>
     <string name="base_profile_descr_bicycle">Mountain bike, moped, horse</string>
     <string name="base_profile_descr_pedestrian">Walking, hiking, running</string>
     <string name="base_profile_descr_public_transport">Public transport types</string>
@@ -6033,4 +6034,5 @@ Download tile maps directly, or copy them as SQLite database files to OsmAnd\'s 
     <string name="routing_attr_freeride_policy_name">Off-piste</string>
     <string name="routing_attr_freeride_policy_description">\'Freeride\' and \'Off-piste\' are unofficial routes and passages. Typically ungroomed, unmaintained and not checked in the evening. Enter at your own risk.</string>
     <string name="voice_prompts_timetable">Voice prompts times</string>
+    <string name="base_profile_descr_vsav">VSAV</string>
 </resources>

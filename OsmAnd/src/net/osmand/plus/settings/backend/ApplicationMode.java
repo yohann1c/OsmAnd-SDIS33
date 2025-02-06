@@ -59,6 +59,10 @@ public class ApplicationMode {
 			.icon(R.drawable.ic_action_car_dark)
 			.description(R.string.base_profile_descr_car).reg();
 
+	public static final ApplicationMode VSAV = createBase(R.string.base_profile_descr_VSAV, "VSAV")
+			.icon(R.drawable.ic_action_campervan)
+			.description(R.string.base_profile_descr_vsav).reg();
+
 	public static final ApplicationMode BICYCLE = createBase(R.string.app_mode_bicycle, "bicycle")
 			.icon(R.drawable.ic_action_bicycle_dark)
 			.description(R.string.base_profile_descr_bicycle).reg();

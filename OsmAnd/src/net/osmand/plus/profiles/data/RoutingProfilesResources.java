@@ -10,6 +10,7 @@ public enum RoutingProfilesResources {
 	STRAIGHT_LINE_MODE(R.string.routing_profile_straightline, R.drawable.ic_action_split_interval),
 	BROUTER_MODE(R.string.routing_profile_broutrer, R.drawable.ic_action_split_interval),
 	CAR(R.string.rendering_value_car_name, R.drawable.ic_action_car_dark),
+	VSAV(R.string.base_profile_descr_VSAV, R.drawable.ic_action_campervan),
 	PEDESTRIAN(R.string.rendering_value_pedestrian_name, R.drawable.ic_action_pedestrian_dark),
 	BICYCLE(R.string.rendering_value_bicycle_name, R.drawable.ic_action_bicycle_dark),
 	SKI(R.string.routing_profile_ski, R.drawable.ic_action_skiing),

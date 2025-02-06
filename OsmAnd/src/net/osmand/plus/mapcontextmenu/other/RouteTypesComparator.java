@@ -32,6 +32,8 @@ class RouteTypesComparator implements Comparator<MenuObject> {
 
 		addRouteTypes(ApplicationMode.CAR,
 				ROAD.getName(), DETOUR.getName(), BICYCLE.getName(), MOUNTAINBIKE.getName());
+		addRouteTypes(ApplicationMode.VSAV,
+				ROAD.getName(), DETOUR.getName(), BICYCLE.getName(), MOUNTAINBIKE.getName());
 		addRouteTypes(ApplicationMode.BICYCLE,
 				BICYCLE.getName(), MOUNTAINBIKE.getName(), ROAD.getName(), DETOUR.getName());
 		addRouteTypes(ApplicationMode.PEDESTRIAN,
