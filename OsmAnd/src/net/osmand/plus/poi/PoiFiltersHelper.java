@@ -1,6 +1,9 @@
 package net.osmand.plus.poi;
 
+import static android.util.Log.println;
+import static net.osmand.plus.poi.PoiUIFilter.STD_PREFIX;
 import static net.osmand.plus.poi.PoiUIFilter.TOP_WIKI_FILTER_ID;
+import static net.osmand.plus.poi.PoiUIFilter.USER_PREFIX;
 
 import android.util.ArraySet;
 
@@ -12,6 +15,7 @@ import net.osmand.PlatformUtil;
 import net.osmand.osm.AbstractPoiType;
 import net.osmand.osm.MapPoiTypes;
 import net.osmand.osm.PoiCategory;
+import net.osmand.osm.PoiType;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.R;
 import net.osmand.plus.api.SQLiteAPI.SQLiteConnection;
@@ -242,9 +246,14 @@ public class PoiFiltersHelper {
 		if (cacheTopStandardFilters == null && poiTypes.isInit()) {
 			// user defined
 			List<PoiUIFilter> filters = getUserDefinedPoiFilters(true);
+			//Ajouter nouveaux filtres
+			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("healthcare"), app, ": hopital"));
+			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("man_made"), app, ": usine"));
+			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("emergency"), app, ": Pompiers"));
+			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));
 			// default
 			for (AbstractPoiType t : poiTypes.getTopVisibleFilters()) {
-				filters.add(new PoiUIFilter(t, app, ""));
+				//filters.add(new PoiUIFilter(t, app, ""));
 			}
 			PluginsHelper.registerPoiFilters(filters);
 			cacheTopStandardFilters = filters;

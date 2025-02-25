@@ -35,6 +35,7 @@ import androidx.annotation.StringRes;
 
 import net.osmand.OnResultCallback;
 import net.osmand.PlatformUtil;
+import net.osmand.osm.PoiFilter;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.MapActivity;
@@ -46,6 +47,7 @@ import net.osmand.plus.dialogs.DetailsBottomSheet;
 import net.osmand.plus.dialogs.SelectMapStyleBottomSheetDialogFragment;
 import net.osmand.plus.plugins.PluginsHelper;
 import net.osmand.plus.poi.PoiFiltersHelper;
+import net.osmand.plus.poi.PoiUIFilter;
 import net.osmand.plus.resources.ResourceManager;
 import net.osmand.plus.settings.backend.OsmandSettings;
 import net.osmand.plus.settings.backend.preferences.CommonPreference;
@@ -137,7 +139,13 @@ public class ConfigureMapMenu {
 				|| !Algorithms.isEmpty(resourceManager.getTravelRepositories());
 		if (hasPoiData) {
 			PoiFiltersHelper poiFilters = app.getPoiFilters();
-			selected = poiFilters.isShowingAnyGeneralPoi();
+			//selected = poiFilters.isShowingAnyGeneralPoi();
+
+			selected = true;
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("healthcare"), app, ": hopital"));
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("man_made"), app, ": usine"));
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency"), app, ": pompiers"));
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));
 			adapter.addItem(new ContextMenuItem(POI_OVERLAY_ID)
 					.setTitleId(R.string.layer_poi, activity)
 					.setSelected(selected)
