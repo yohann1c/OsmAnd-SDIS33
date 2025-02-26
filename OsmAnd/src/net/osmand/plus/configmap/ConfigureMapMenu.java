@@ -137,15 +137,16 @@ public class ConfigureMapMenu {
 		ResourceManager resourceManager = app.getResourceManager();
 		boolean hasPoiData = !Algorithms.isEmpty(resourceManager.getAmenityRepositories())
 				|| !Algorithms.isEmpty(resourceManager.getTravelRepositories());
+		PoiFiltersHelper poiFilters = app.getPoiFilters();
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("healthcare"), app, ": hopital"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("man_made"), app, ": usine"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency"), app, ": pompiers"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));
 		if (hasPoiData) {
-			PoiFiltersHelper poiFilters = app.getPoiFilters();
+
 			//selected = poiFilters.isShowingAnyGeneralPoi();
 
 			selected = true;
-			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("healthcare"), app, ": hopital"));
-			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("man_made"), app, ": usine"));
-			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency"), app, ": pompiers"));
-			poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));
 			adapter.addItem(new ContextMenuItem(POI_OVERLAY_ID)
 					.setTitleId(R.string.layer_poi, activity)
 					.setSelected(selected)
@@ -162,16 +163,6 @@ public class ConfigureMapMenu {
 				.setColor(app, selected ? R.color.osmand_orange : INVALID_ID)
 				.setIcon(R.drawable.ic_action_text_dark)
 				.setItemDeleteAction(settings.SHOW_POI_LABEL)
-				.setListener(listener));
-
-		TransportLinesMenu transportLinesMenu = new TransportLinesMenu(app);
-		selected = transportLinesMenu.isShowAnyTransport();
-		adapter.addItem(new ContextMenuItem(TRANSPORT_ID)
-				.setTitleId(R.string.rendering_category_transport, activity)
-				.setIcon(R.drawable.ic_action_transport_bus)
-				.setSecondaryIcon(R.drawable.ic_action_additional_option)
-				.setSelected(selected)
-				.setColor(selected ? selectedProfileColor : null)
 				.setListener(listener));
 
 		adapter.addItem(new ContextMenuItem(GPX_FILES_ID)
@@ -221,18 +212,18 @@ public class ConfigureMapMenu {
 	                                       @NonNull ContextMenuAdapter adapter,
 	                                       @NonNull MapActivity activity,
 	                                       boolean nightMode) {
-		adapter.addItem(new ContextMenuItem(ROUTES_CATEGORY_ID)
+		/*adapter.addItem(new ContextMenuItem(ROUTES_CATEGORY_ID)
 				.setCategory(true)
 				.setTitleId(R.string.rendering_category_routes, activity)
-				.setLayout(R.layout.list_group_title_with_switch));
+				.setLayout(R.layout.list_group_title_with_switch));*/
 
 		for (String attrName : RouteUtils.getRoutesAttrsNames(customRules)) {
 			RenderingRuleProperty property = getPropertyForAttr(customRules, attrName);
 			if (ALPINE.getRenderingPropertyAttr().equals(attrName)) {
 				RenderingRuleProperty alpineProperty = app.getRendererRegistry().getCustomRenderingRuleProperty(ALPINE_HIKING_SCALE_SCHEME_ATTR);
-				adapter.addItem(createRoutesItem(activity, attrName, alpineProperty, nightMode));
+				//adapter.addItem(createRoutesItem(activity, attrName, alpineProperty, nightMode));
 			} else if (MapRoutesFragment.shouldShow(app, attrName)) {
-				adapter.addItem(createRoutesItem(activity, attrName, property, nightMode));
+				//adapter.addItem(createRoutesItem(activity, attrName, property, nightMode));
 			} else {
 				String id = ROUTES_ITEMS_ID_SCHEME + attrName;
 				int iconId = RouteUtils.getIconIdForAttr(attrName);
@@ -243,7 +234,7 @@ public class ConfigureMapMenu {
 						RouteUtils.showRendererSnackbarForAttr(activity, attrName, nightMode, pref);
 					}
 				});
-				adapter.addItem(item);
+				//adapter.addItem(item);
 			}
 			customRules.remove(property);
 		}

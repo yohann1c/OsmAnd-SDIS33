@@ -100,7 +100,7 @@ public class MapillaryPlugin extends OsmandPlugin {
 	public MapillaryPlugin(OsmandApplication app) {
 		super(app);
 
-		SHOW_MAPILLARY = registerBooleanPreference("show_mapillary", false).makeProfile();
+		SHOW_MAPILLARY = registerBooleanPreference("show_mapillary", true).makeProfile();
 		MAPILLARY_FIRST_DIALOG_SHOWN = registerBooleanPreference("mapillary_first_dialog_shown", false).makeGlobal();
 
 		USE_MAPILLARY_FILTER = registerBooleanPreference("use_mapillary_filters", false).makeGlobal().makeShared();
