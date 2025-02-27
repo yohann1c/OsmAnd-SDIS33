@@ -37,6 +37,7 @@ import androidx.multidex.MultiDexApplication;
 
 import net.osmand.plus.configmap.tracks.TrackSortModesHelper;
 import net.osmand.plus.plugins.OsmandPlugin;
+import net.osmand.plus.poi.PoiUIFilter;
 import net.osmand.plus.shared.OsmAndContextImpl;
 import net.osmand.PlatformUtil;
 import net.osmand.aidl.OsmandAidlApi;
@@ -302,6 +303,11 @@ public class OsmandApplication extends MultiDexApplication {
 		BackupHelper.DEBUG = true;//PluginsHelper.isDevelopment();
 
 		retrievePerPdf();
+
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("healthcare"), this, ": hopital"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("man_made"), this, ": usine"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("emergency"), this, ": pompiers"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("emergency_infrastructure"), this, ": hydrant"));
 
 	}
 

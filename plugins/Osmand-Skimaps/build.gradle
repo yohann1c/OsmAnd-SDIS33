@@ -27,9 +27,6 @@ android {
 		targetSdkVersion 34
 	}
 
-	lintOptions {
-		abortOnError false
-	}
 
 	sourceSets {
 		main {
@@ -54,6 +51,9 @@ android {
 	}
 	buildFeatures {
 		aidl true
+	}
+	lint {
+		abortOnError false
 	}
 }
 

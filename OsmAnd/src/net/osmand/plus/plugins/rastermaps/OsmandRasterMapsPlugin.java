@@ -167,15 +167,17 @@ public class OsmandRasterMapsPlugin extends OsmandPlugin {
 		if (isActive()) {
 			updateLayer(mapView, settings, overlayLayer, settings.MAP_OVERLAY, ZORDER_OVERLAY, settings.MAP_OVERLAY == settingsToWarnAboutMap);
 		} else {
-			mapView.removeLayer(overlayLayer);
-			overlayLayer.setMap(null);
+			//mapView.removeLayer(overlayLayer);
+			//overlayLayer.setMap(null);
+			updateLayer(mapView, settings, overlayLayer, settings.MAP_OVERLAY, ZORDER_OVERLAY, settings.MAP_OVERLAY == settingsToWarnAboutMap);
 		}
 		// Underlay
 		if (isActive()) {
 			updateLayer(mapView, settings, underlayLayer, settings.MAP_UNDERLAY, ZORDER_UNDERLAY, settings.MAP_UNDERLAY == settingsToWarnAboutMap);
 		} else {
-			mapView.removeLayer(underlayLayer);
-			underlayLayer.setMap(null);
+			//mapView.removeLayer(underlayLayer);
+			//underlayLayer.setMap(null);
+			updateLayer(mapView, settings, underlayLayer, settings.MAP_UNDERLAY, ZORDER_UNDERLAY, settings.MAP_UNDERLAY == settingsToWarnAboutMap);
 		}
 		if (mapActivity != null) {
 			MapLayers layers = mapActivity.getMapLayers();
@@ -328,7 +330,7 @@ public class OsmandRasterMapsPlugin extends OsmandPlugin {
 	@Override
 	protected void registerLayerContextMenuActions(@NonNull ContextMenuAdapter adapter, @NonNull MapActivity mapActivity, @NonNull List<RenderingRuleProperty> customRules) {
 		if (!isEnabled()) {
-			return;
+			//return;
 		}
 
 		WeakReference<MapActivity> mapActivityRef = new WeakReference<>(mapActivity);

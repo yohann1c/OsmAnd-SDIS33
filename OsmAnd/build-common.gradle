@@ -14,9 +14,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-	lintOptions {
-		abortOnError false
-	}
 
 	// related to kuromoji
 	//packagingOptions {
@@ -28,7 +25,6 @@ android {
 	// This is from OsmAndCore_android.aar - for some reason it's not inherited
 	aaptOptions {
 		// Don't compress any embedded resources
-		noCompress "qz"
 		cruncherEnabled = false
 		// Flag notifies aapt to keep the attribute IDs around
 		// additionalParameters "--no-version-vectors"
@@ -191,6 +187,12 @@ tasks.register('gironde', Copy) {
 	}
 	into "assets"
 }
+/*tasks.register('cartope', Copy) {
+	from("../../resources/data") {
+		include "carto_ope.sqlitedb"
+	}
+	into "assets"
+}*/
 
 tasks.register('collectVoiceAssets', Sync) {
 	from "../../resources/voice"
@@ -311,6 +313,7 @@ tasks.register('collectExternalResources') {
 			copyRouteActivities,
 			downloadWorldMiniBasemap,
 			gironde,
+			//cartope,
 			collectTestResources,
 			copy3DModels
 }
