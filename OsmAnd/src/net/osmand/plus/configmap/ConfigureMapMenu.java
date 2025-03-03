@@ -35,6 +35,8 @@ import androidx.annotation.StringRes;
 
 import net.osmand.OnResultCallback;
 import net.osmand.PlatformUtil;
+import net.osmand.osm.AbstractPoiType;
+import net.osmand.osm.MapPoiTypes;
 import net.osmand.osm.PoiFilter;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.R;
@@ -138,10 +140,19 @@ public class ConfigureMapMenu {
 		boolean hasPoiData = !Algorithms.isEmpty(resourceManager.getAmenityRepositories())
 				|| !Algorithms.isEmpty(resourceManager.getTravelRepositories());
 		PoiFiltersHelper poiFilters = app.getPoiFilters();
+		MapPoiTypes poiTypes = app.getPoiTypes();
+		//Selectionner tout par défaut
+		for (AbstractPoiType t : poiTypes.getCategories()) {
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(t, app, ""));
+		}
+		/*
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("neareast_pois"), app, ": poi"));
+		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("sport"), app, ": sports"));
 		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("healthcare"), app, ": hopital"));
 		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("man_made"), app, ": usine"));
 		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency"), app, ": pompiers"));
 		poiFilters.addSelectedPoiFilter(new PoiUIFilter(app.getPoiTypes().getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));
+		*/
 		if (hasPoiData) {
 
 			//selected = poiFilters.isShowingAnyGeneralPoi();

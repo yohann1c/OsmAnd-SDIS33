@@ -247,13 +247,13 @@ public class PoiFiltersHelper {
 			// user defined
 			List<PoiUIFilter> filters = getUserDefinedPoiFilters(true);
 			//Ajouter nouveaux filtres
-			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("healthcare"), app, ": hopital"));
+			/*filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("healthcare"), app, ": hopital"));
 			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("man_made"), app, ": usine"));
 			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("emergency"), app, ": Pompiers"));
-			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));
+			filters.add(new PoiUIFilter(poiTypes.getPoiCategoryByName("emergency_infrastructure"), app, ": hydrant"));*/
 			// default
 			for (AbstractPoiType t : poiTypes.getTopVisibleFilters()) {
-				//filters.add(new PoiUIFilter(t, app, ""));
+				filters.add(new PoiUIFilter(t, app, ""));
 			}
 			PluginsHelper.registerPoiFilters(filters);
 			cacheTopStandardFilters = filters;

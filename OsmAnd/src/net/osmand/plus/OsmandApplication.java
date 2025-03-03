@@ -35,6 +35,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
+import net.osmand.osm.AbstractPoiType;
 import net.osmand.plus.configmap.tracks.TrackSortModesHelper;
 import net.osmand.plus.plugins.OsmandPlugin;
 import net.osmand.plus.poi.PoiUIFilter;
@@ -303,12 +304,9 @@ public class OsmandApplication extends MultiDexApplication {
 		BackupHelper.DEBUG = true;//PluginsHelper.isDevelopment();
 
 		retrievePerPdf();
-
-		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("healthcare"), this, ": hopital"));
-		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("man_made"), this, ": usine"));
-		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("emergency"), this, ": pompiers"));
-		poiFilters.addSelectedPoiFilter(new PoiUIFilter(this.getPoiTypes().getPoiCategoryByName("emergency_infrastructure"), this, ": hydrant"));
-
+		for (AbstractPoiType t : poiTypes.getCategories()) {
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(t, this, ""));
+		}
 	}
 
 	public boolean isPlusVersionInApp() {
@@ -1149,6 +1147,9 @@ public class OsmandApplication extends MultiDexApplication {
 			analyticsHelper.addEvent("map_download_" + event + ": " + item.getFileName() + " in " + time + " msec", AnalyticsHelper.EVENT_TYPE_MAP_DOWNLOAD);
 		} catch (Exception e) {
 			LOG.error(e);
+		}
+		for (AbstractPoiType t : poiTypes.getCategories()) {
+			poiFilters.addSelectedPoiFilter(new PoiUIFilter(t, this, ""));
 		}
 	}
 
