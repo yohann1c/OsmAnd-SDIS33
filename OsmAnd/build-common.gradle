@@ -187,6 +187,12 @@ tasks.register('gironde', Copy) {
 	}
 	into "assets"
 }
+tasks.register('satellite', Copy) {
+	from("../../resources/data") {
+		include "satellite.metainfo"
+	}
+	into "assets/Satellite IGN 2024"
+}
 /*tasks.register('cartope', Copy) {
 	from("../../resources/data") {
 		include "carto_ope.sqlitedb"
@@ -313,6 +319,7 @@ tasks.register('collectExternalResources') {
 			copyRouteActivities,
 			downloadWorldMiniBasemap,
 			gironde,
+			satellite,
 			//cartope,
 			collectTestResources,
 			copy3DModels
