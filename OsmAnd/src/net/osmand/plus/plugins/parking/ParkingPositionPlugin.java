@@ -79,6 +79,11 @@ public class ParkingPositionPlugin extends OsmandPlugin {
 	private final CommonPreference<Long> parkingTime;
 	private final CommonPreference<Long> parkingPickupDate;
 
+	@Override
+	public boolean isEnableByDefault() {
+		return true;
+	}
+
 	public ParkingPositionPlugin(OsmandApplication app) {
 		super(app);
 		OsmandSettings set = app.getSettings();

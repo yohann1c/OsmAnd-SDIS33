@@ -85,7 +85,7 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 	public boolean isEnableByDefault() {
 		return true;
 	}
-	
+
 	public OsmandMonitoringPlugin(OsmandApplication app) {
 		super(app);
 		liveMonitoringHelper = new LiveMonitoringHelper(app);
