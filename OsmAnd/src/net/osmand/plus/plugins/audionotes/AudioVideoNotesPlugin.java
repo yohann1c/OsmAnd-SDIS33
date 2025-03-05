@@ -142,6 +142,11 @@ public class AudioVideoNotesPlugin extends OsmandPlugin {
 	public static final int AV_DEFAULT_ACTION_TAKEPICTURE = 2;
 	public static final int AV_DEFAULT_ACTION_CHOOSE = -1;
 
+	@Override
+	public boolean isEnableByDefault() {
+		return true;
+	}
+
 	@IntDef({AV_DEFAULT_ACTION.AUDIO, AV_DEFAULT_ACTION.VIDEO, AV_DEFAULT_ACTION.TAKEPICTURE, AV_DEFAULT_ACTION.CHOOSE})
 	@Retention(RetentionPolicy.SOURCE)
 	@interface AV_DEFAULT_ACTION {

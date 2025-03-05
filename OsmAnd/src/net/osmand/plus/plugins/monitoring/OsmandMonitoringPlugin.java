@@ -81,6 +81,11 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 	private TextInfoWidget uphillWidget;
 	private TextInfoWidget downhillWidget;
 
+	@Override
+	public boolean isEnableByDefault() {
+		return true;
+	}
+	
 	public OsmandMonitoringPlugin(OsmandApplication app) {
 		super(app);
 		liveMonitoringHelper = new LiveMonitoringHelper(app);
