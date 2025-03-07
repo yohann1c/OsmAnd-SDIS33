@@ -64,6 +64,11 @@ import java.util.Map;
 
 public class OsmandRasterMapsPlugin extends OsmandPlugin {
 
+	@Override
+	public boolean isEnableByDefault() {
+		return true;
+	}
+
 	public static final String NO_POLYGONS_ATTR = "noPolygons";
 	public static final String HIDE_WATER_POLYGONS_ATTR = "hideWaterPolygons";
 
