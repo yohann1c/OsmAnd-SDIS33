@@ -116,7 +116,7 @@
 				android:layout_marginLeft="@dimen/list_content_padding"
 				android:layout_marginEnd="@dimen/favorites_icon_right_margin"
 				android:layout_marginRight="@dimen/favorites_icon_right_margin"
-				app:srcCompat="@drawable/ic_action_work"
+				app:srcCompat="@drawable/mx_amenity_fire_station"
 				android:tint="@color/icon_color_default_light" />
 
 			<LinearLayout

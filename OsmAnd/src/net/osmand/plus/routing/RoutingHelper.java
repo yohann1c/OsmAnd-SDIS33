@@ -3,6 +3,8 @@ package net.osmand.plus.routing;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import net.osmand.data.FavouritePoint;
+import net.osmand.plus.myplaces.favorites.FavouritesHelper;
 import  net.osmand.plus.plugins.monitoring.SavingTrackHelper;
 import net.osmand.Location;
 import net.osmand.LocationsHolder;
@@ -239,7 +241,7 @@ public class RoutingHelper {
 			// clear last fixed location
 			this.lastProjection = null;
 			setFollowingMode(false);
-			new SavingTrackHelper(app).saveDataToGpx(app.getAppCustomization().getTracksDir());;
+			new SavingTrackHelper(app).saveDataToGpx(app.getAppCustomization().getTracksDir());
 		}
 		transportRoutingHelper.clearCurrentRoute(newFinalLocation);
 	}
@@ -259,6 +261,26 @@ public class RoutingHelper {
 				}
 			}
 		});
+		// Supprimer le lieu d'intervention de l'application une fois arrivé sur place seulement si
+		// la destination est le lieu d'intervention
+		TargetPointsHelper targetPointsHelper = app.getTargetPointsHelper();
+		TargetPoint target = targetPointsHelper.getPointToNavigate();
+		// Les coordonnées ont une précision de 14 chiffre après la virgule
+		// Il faut normer avec le résultat de l'API. Dans mon cas, le résultat est de 6 chiffres.
+		Double lat = Math.round(target.getLatitude() * 1000000.0) / 1000000.0;
+		Double lon = Math.round(target.getLongitude() * 1000000.0) / 1000000.0;
+		LatLon targetLocation = new LatLon(lat, lon);
+		FavouritesHelper favorites = app.getFavoritesHelper();
+		List<FavouritePoint> groups = favorites.getFavouritePoints();
+		for (int group = 0; group < groups.size(); group++) {
+			FavouritePoint groupx = groups.get(group);
+			if (groupx.getName() == "Intervention") {
+				LatLon groupxLocation = new LatLon(groupx.getLatitude(), groupx.getLongitude());
+				if (groupxLocation.equals(targetLocation)) {
+					favorites.deleteFavourite(groupx);
+				}
+			}
+		}
 	}
 
 	void newRouteCalculated(boolean newRoute, RouteCalculationResult res) {

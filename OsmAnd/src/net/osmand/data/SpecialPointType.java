@@ -18,7 +18,7 @@ import net.osmand.plus.settings.backend.preferences.OsmandPreference;
 public enum SpecialPointType {
 
 	HOME("home", R.string.home_button, R.drawable.mx_special_house),
-	WORK("work", R.string.work_button, R.drawable.mx_special_building),
+	WORK("Intervention", R.string.intervention, R.drawable.mx_amenity_fire_station),
 	PARKING("parking", R.string.osmand_parking_position_name, R.drawable.mx_parking);
 
 	private final String typeName;

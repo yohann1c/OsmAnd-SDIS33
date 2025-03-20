@@ -6,12 +6,16 @@ import static net.osmand.aidlapi.OsmAndCustomizationConstants.NAVIGATION_OPTIONS
 import static net.osmand.plus.routepreparationmenu.MapRouteInfoMenu.MapRouteMenuType.ROUTE_DETAILS;
 import static net.osmand.plus.routepreparationmenu.MapRouteInfoMenu.MapRouteMenuType.ROUTE_INFO;
 
+import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,11 +45,13 @@ import androidx.transition.Transition;
 import androidx.transition.TransitionListenerAdapter;
 import androidx.transition.TransitionManager;
 
+import net.osmand.ApiClient;
 import net.osmand.Location;
 import net.osmand.PlatformUtil;
 import net.osmand.StateChangedListener;
 import net.osmand.core.android.MapRendererView;
 import net.osmand.data.*;
+import net.osmand.plus.myplaces.favorites.FavoriteGroup;
 import net.osmand.plus.routepreparationmenu.data.RouteMenuAppModes;
 import net.osmand.plus.routepreparationmenu.data.parameters.AvoidPTTypesRoutingParameter;
 import net.osmand.plus.routepreparationmenu.data.parameters.AvoidRoadsRoutingParameter;
@@ -54,6 +60,8 @@ import net.osmand.plus.routepreparationmenu.data.parameters.LocalRoutingParamete
 import net.osmand.plus.routepreparationmenu.data.parameters.MuteSoundRoutingParameter;
 import net.osmand.plus.routepreparationmenu.data.parameters.OtherLocalRoutingParameter;
 import net.osmand.plus.routepreparationmenu.data.parameters.ShowAlongTheRouteItem;
+import net.osmand.plus.settings.backend.DeviceUtils;
+import net.osmand.plus.utils.AndroidNetworkUtils;
 import net.osmand.shared.gpx.GpxFile;
 import net.osmand.shared.gpx.GpxHelper;
 import net.osmand.shared.gpx.primitives.WptPt;
@@ -119,6 +127,9 @@ import net.osmand.util.Algorithms;
 import net.osmand.util.MapUtils;
 
 import org.apache.commons.logging.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -318,23 +329,39 @@ public class MapRouteInfoMenu implements IRouteInformationListener, CardListener
 		OsmandApplication app = getApp();
 		FavouritesHelper favorites = app.getFavoritesHelper();
 		TargetPointsHelper targetPointsHelper = app.getTargetPointsHelper();
-		switch (pointType) {
-			case START:
-				targetPointsHelper.setStartPoint(latLon, true, pd);
-				break;
-			case TARGET:
-				targetPointsHelper.navigateToPoint(latLon, true, -1, pd);
-				break;
-			case INTERMEDIATE:
-				targetPointsHelper.navigateToPoint(latLon, true, targetPointsHelper.getIntermediatePoints().size(), pd);
-				break;
-			case HOME:
-				favorites.setSpecialPoint(latLon, SpecialPointType.HOME, address);
-				break;
-			case WORK:
-				favorites.setSpecialPoint(latLon, SpecialPointType.WORK, address);
-				break;
-		}
+		String androidId = DeviceUtils.getAndroidId(app.getApplicationContext());
+		String url = "https://67d97c3900348dd3e2ab4af0.mockapi.io/api/lieu_intervention/intervention?android_id=" + androidId; // Fake API
+				ApiClient.sendGetRequest(url, new ApiClient.ApiCallback() {
+			public void onSuccess(LatLon resultLatLon) {
+				new Handler(Looper.getMainLooper()).post(() -> {
+					switch (pointType) {
+						case START:
+							targetPointsHelper.setStartPoint(latLon, true, pd);
+							break;
+						case TARGET:
+							targetPointsHelper.navigateToPoint(latLon, true, -1, pd);
+							break;
+						case INTERMEDIATE:
+							targetPointsHelper.navigateToPoint(latLon, true, targetPointsHelper.getIntermediatePoints().size(), pd);
+							break;
+						case HOME:
+							favorites.setSpecialPoint(latLon, SpecialPointType.HOME, address);
+							break;
+						case WORK:
+							app.showToastMessage("Récupération du lieu d'intervention.");
+							favorites.setSpecialPoint(resultLatLon, SpecialPointType.WORK, address);
+							break;
+					}
+				});
+			}
+
+			public void onError(Exception e) {
+				new Handler(Looper.getMainLooper()).post(() -> {
+					e.printStackTrace();
+					app.showToastMessage("Erreur lors de la récupération du lieu d'intervention.");
+				});
+			}
+		});
 	}
 
 	public OnMarkerSelectListener getOnMarkerSelectListener() {

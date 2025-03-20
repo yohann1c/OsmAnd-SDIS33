@@ -2700,7 +2700,7 @@
     <string name="routeInfo_steepness_name">Pente</string>
     <string name="add_home">Ajouter domicile</string>
     <string name="add_work">Ajouter travail</string>
-    <string name="work_button">Travail</string>
+    <string name="work_button">Intervention</string>
     <string name="previous_route">Itinéraire précédent</string>
     <string name="add_destination_query">Veuillez commencer par ajouter une Arrivée</string>
     <string name="shared_string_swap">Permuter</string>
