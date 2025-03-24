@@ -360,8 +360,16 @@ public class MapRouteInfoMenu implements IRouteInformationListener, CardListener
 				new Handler(Looper.getMainLooper()).post(() -> {
 					switch (pointType) {
 						case WORK:
-							e.printStackTrace();
-							app.showToastMessage("Erreur lors de la récupération du lieu d'intervention.");
+							String message = String.valueOf(e);
+							if (message.contains("java.net.UnknownHostException: Unable to resolve host")) {
+								app.showToastMessage("Problème réseau ou serveur.");
+							} else if (message.contains("java.lang.Exception: Erreur HTTP : 404")) {
+								app.showToastMessage("Pas d'intervention en cours.");
+							} else if (message.contains("org.json.JSONException: No value for")) {
+								app.showToastMessage("Coordonnées non renseignées.");
+							} else {
+								app.showToastMessage(message);
+							}
 							break;
 					}
 				});
