@@ -62,10 +62,11 @@ public class TripRecordingDistanceWidget extends SimpleWidget {
 		boolean globalRecording = settings.SAVE_GLOBAL_TRACK_TO_GPX.get();
 		boolean recording = savingTrackHelper.getIsRecording();
 		boolean liveMonitoring = plugin.isLiveMonitoringEnabled();
-		float distance = savingTrackHelper.getDistance();
+		//float distance = savingTrackHelper.getDistance();
+		float distance = 0;
 
-		setText(distance);
-		setIcons(globalRecording, liveMonitoring, recording);
+//		setText(distance);
+//		setIcons(globalRecording, liveMonitoring, recording);
 
 		if (distance > 0) {
 			lastUpdateTime = app.getSavingTrackHelper().getLastTimeUpdated();
