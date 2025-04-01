@@ -21,7 +21,7 @@
 	<color name="text_color_tertiary_dark">#404040</color>
 	<color name="text_color_tab_active_light">#ffffff</color>
 	<color name="text_color_tab_active_dark">#cccccc</color>
-	<color name="text_color_negative">#E71D36</color>
+	<color name="text_color_negative">#FF0020</color>
 	<color name="text_color_positive">#5baf3f</color>
 
 	<!-- Icon -->
@@ -31,17 +31,17 @@
 	<color name="icon_color_secondary_dark">#4d4d4d</color>
 	<color name="icon_color_primary_light">#4d4d4d</color>
 	<color name="icon_color_primary_dark">#b3b3b3</color>
-	<color name="icon_color_osmand_light">#ff8800</color>
-	<color name="icon_color_osmand_dark">#d28521</color>
+	<color name="icon_color_osmand_light">#FF0020</color>
+	<color name="icon_color_osmand_dark">#FF0020</color>
 	<color name="icon_color_active_light">#237bff</color>
-	<color name="icon_color_active_dark">#d28521</color>
+	<color name="icon_color_active_dark">#FF0020</color>
 	<color name="map_button_icon_color_light">#727272</color>
 	<color name="map_button_icon_color_dark">#cccccc</color>
 	<color name="map_button_background_color_light">#FFFFFF</color>
 	<color name="map_button_background_color_dark">#000000</color>
 	
 	<!-- AppBar & Status bar -->
-	<color name="app_bar_main_light">#ff8800</color>
+	<color name="app_bar_main_light">#FF0020</color>
 	<color name="app_bar_main_dark">#252727</color>
 	<color name="app_bar_secondary_light">#FFFFFF</color>
 	<color name="app_bar_secondary_dark">#252727</color>
@@ -51,7 +51,7 @@
 	<color name="navigation_bar_bg_light">#000000</color>
 	<color name="navigation_bar_bg_dark">#000000</color>
 
-	<color name="status_bar_main_light">#E68200</color>
+	<color name="status_bar_main_light">#FF0020</color>
 	<color name="status_bar_main_dark">#1E1F1F</color>
 	<color name="status_bar_secondary_light">#F0F0F0</color>
 	<color name="status_bar_secondary_dark">#1E1F1F</color>
@@ -68,7 +68,7 @@
 	
 	<!-- Active -->
 	<color name="active_color_primary_light">#237bff</color>
-	<color name="active_color_primary_dark">#d28521</color>
+	<color name="active_color_primary_dark">#FF0020</color>
 	<color name="active_color_secondary_light">#DEEBFF</color>
 	<color name="active_color_secondary_dark">#4D300E</color>
 
@@ -80,7 +80,7 @@
 	<!-- User created points -->
 	<color name="marker_blue">#2196f3</color>
 	<color name="marker_green">#73b825</color>
-	<color name="marker_orange">#ff9800</color>
+	<color name="marker_orange">#FF0020</color>
 	<color name="marker_red">#e53935</color>
 	<color name="marker_yellow">#FDD835</color>
 	<color name="marker_teal">#26a69a</color>
@@ -158,8 +158,8 @@
 	<color name="popup_text_color">#FFFFFF</color>
 
 
-	<color name="osmand_orange">#ff8f00</color>
-	<color name="osmand_orange_dark">#e68200</color>
+	<color name="osmand_orange">#FF0020</color>
+	<color name="osmand_orange_dark">#FF0020</color>
 	<color name="app_mode_icon_color">#33B4E4</color>
 	<color name="recording_color">#F44336</color>
 
@@ -171,10 +171,10 @@
 	<color name="list_item_light_pressed">#8cffffff</color>
 	<color name="list_item_dark_pressed">#be222526</color>
 
-	<color name="fab_color">#ff8f00</color>
-	<color name="fab_color_pressed">#e58200</color>
+	<color name="fab_color">#FF0020</color>
+	<color name="fab_color_pressed">#FF0020</color>
 
-	<color name="map_widget_icon_color">#ff8f00</color>
+	<color name="map_widget_icon_color">#FF0020</color>
 	<color name="map_widget_stroke">#4C000000</color>
 	<color name="map_widget_light">#fff</color>
 	<color name="map_widget_dark">#a0000000</color>
@@ -194,9 +194,9 @@
 
 	<color name="tool_bar_color_dark">#CC080B0D</color>
 	<color name="tool_bar_color_light">#CC080B0D</color>
-	<color name="tool_bar_orange_color_light">#b4ff8f00</color>
+	<color name="tool_bar_orange_color_light">#b4FF0020</color>
 
-	<color name="download_pressed_light">#8cff8f00</color>
+	<color name="download_pressed_light">#8cFF0020</color>
 	<color name="download_pressed_dark">#be39464d</color>
 
 
@@ -217,11 +217,11 @@
 	<!-- <color name="activity_background">#666666</color>  -->
 
 	<!-- Distance to object suitable for all themes -->
-	<color name="color_distance">#FD9822</color>
+	<color name="color_distance">#FF0020</color>
 
 	<!-- Speedometer -->
-	<color name="speedometer_text_speed_exceed_day">#E71D36</color>
-	<color name="speedometer_text_speed_exceed_night">#E71D36</color>
+	<color name="speedometer_text_speed_exceed_day">#FF0020</color>
+	<color name="speedometer_text_speed_exceed_night">#FF0020</color>
 
 	<color name="color_myloc_distance">#0080FF</color>
 	<color name="wpt_distance_color">#dd6CB336</color>
@@ -304,7 +304,7 @@
 
 	<!-- DownloadedRegionsLayer -->
 	<color name="region_uptodate">#5532C832</color>
-	<color name="region_backuped">#55FF8F00</color>
+	<color name="region_backuped">#55FF0020</color>
 	<color name="region_selected">#55FFFF00</color>
 	<color name="region_downloading">#44FF61FF</color>
 
@@ -321,7 +321,7 @@
 	<color name="chart_axis_x_text_dark">#98989E</color>
 
 	<color name="gpx_chart_blue">#2f7af5</color>
-	<color name="gpx_chart_orange">#ff8800</color>
+	<color name="gpx_chart_orange">#FF0020</color>
 	<color name="gpx_chart_red">#ff0000</color>
 	<color name="gpx_chart_green">#23b03b</color>
 	<color name="gpx_chart_black_grid">#000000</color>
@@ -373,7 +373,7 @@
 	<color name="keyboard_item_add_button_divider_dark">#121733</color>
 
 	<color name="coordinate_input_active_icon_dark">#c0c0c0</color>
-	<color name="coordinate_input_edit_text_activated">#ff8800</color>
+	<color name="coordinate_input_edit_text_activated">#FF0020</color>
 	<color name="coordinate_input_edit_text_normal_light">#e6e6e6</color>
 
 	<color name="ctx_menu_controller_button_text_color_light_n">#536dfe</color>
@@ -383,7 +383,7 @@
 	<color name="ctx_menu_controller_button_outline_color_light_n">#e6e6e6</color>
 	<color name="ctx_menu_controller_button_outline_color_light_p">#4c63e6</color>
 	<color name="ctx_menu_controller_button_outline_color_dark_n">#2d3133</color>
-	<color name="ctx_menu_controller_button_outline_color_dark_p">#d28521</color>
+	<color name="ctx_menu_controller_button_outline_color_dark_p">#FF0020</color>
 	<color name="ctx_menu_controller_button_bg_color_light_p">#6d82fc</color>
 	<color name="ctx_menu_controller_button_bg_color_dark_p">#b36a0b</color>
 	<color name="ctx_menu_buttons_bg_light">#f2f2f2</color>
@@ -397,11 +397,11 @@
 	<color name="ctx_menu_controller_disabled_text_color_dark">#666666</color>
 
 	<color name="route_info_go_btn_inking_light">#4c63e6</color>
-	<color name="route_info_go_btn_inking_dark">#d28521</color>
+	<color name="route_info_go_btn_inking_dark">#FF0020</color>
 	<color name="route_info_go_btn_bg_light">#6d82fc</color>
 	<color name="route_info_go_btn_bg_light_p">#4c63e6</color>
 	<color name="route_info_go_btn_bg_dark">#b36a0b</color>
-	<color name="route_info_go_btn_bg_dark_p">#d28521</color>
+	<color name="route_info_go_btn_bg_dark_p">#FF0020</color>
 	<color name="route_info_cancel_button_color_light">#5959ff</color>
 	<color name="route_info_cancel_button_color_dark">#17181a</color>
 
@@ -429,7 +429,7 @@
 	<color name="inactive_pages_light">#cccccc</color>
 	<color name="inactive_pages_dark">#505050</color>
 	<color name="active_buttons_and_links_trans_light">#66237bff</color>
-	<color name="active_buttons_and_links_trans_dark">#66d28521</color>
+	<color name="active_buttons_and_links_trans_dark">#66FF0020</color>
 	<!-- <color name="settings_divider">#dcdcdc</color> -->
 	<color name="profile_button_gray">#EFEFEF</color>
 	<color name="profile_button_gray_pressed">#ababab</color>
@@ -452,9 +452,9 @@
 	<color name="profile_icon_color_outdated_light">#A6A6A6</color>
 
 	<color name="switch_button_active_light">#1A237BFF</color>
-	<color name="switch_button_active_dark">#1AD28521</color>
+	<color name="switch_button_active_dark">#1AFF0020</color>
 	<color name="switch_button_active_stroke_light">#80237BFF</color>
-	<color name="switch_button_active_stroke_dark">#80D28521</color>
+	<color name="switch_button_active_stroke_dark">#80FF0020</color>
 	<color name="empty_hint_bg">#80000000</color>
 	<color name="input_layout_bg_color">#4DCCCCCC</color>
 	<color name="text_input_background_light">#4DCCCCCC</color>
@@ -465,7 +465,7 @@
 	<color name="track_gradient_center">#D4EF32</color>
 	<color name="track_gradient_end">#F3374D</color>
 
-	<color name="deletion_color_warning">#E71D36</color>
+	<color name="deletion_color_warning">#FF0020</color>
 
 	<!-- Extra -->
 	<color name="mapillary_color">#3db878</color>
