@@ -63,7 +63,7 @@ Le fonctionnement du processus suit le schéma suivant:
 
 ![1743772275240](image/README/1743772275240.png)
 
-Pour résumer, on a d'un côté un équipage de sapeurs pompiers qui possède une tablette ou un smartphone. Ce smartphone possède un identifiant à determiner (n° de série, IMEI, android_id ...). De l'autre côté on a le SGO (Système de Gestion Opérationnel qui détient en base l'identifiant de la flotte de tablettes et sait à quel équipage ou véhicule cette tablette est affectée. L'opérateur téléphonique renseigne dans le SGO le lieu d'intervention ainsi que les moyens nécessaires pour l'intervention. Cela va créer une réponse JSON lors de l'appel d'API qui sera récupérée par l'application OsmAnd via le bouton intervention qui est un détournement du bouton travail.
+Pour résumer, on a d'un côté un équipage de sapeurs pompiers qui possède une tablette ou un smartphone. Ce smartphone possède un identifiant à determiner (n° de série, IMEI, android_id ...). De l'autre côté on a le SGO (Système de Gestion Opérationnel) qui détient en base l'identifiant de la flotte de tablettes et sait à quel équipage ou véhicule cette tablette est affectée. L'opérateur téléphonique renseigne dans le SGO le lieu d'intervention ainsi que les moyens nécessaires pour l'intervention. Cela va créer une réponse JSON lors de l'appel d'API qui sera récupérée par l'application OsmAnd via le bouton intervention qui est un détournement du bouton travail.
 
 L'URL de l'API peut être changée sur le fichier: `OsmAnd/src/net/osmand/plus/routepreparationmenu/MapRouteInfoMenu.java` . Dans ce fichier, on a ce code:
 
@@ -74,13 +74,13 @@ String url = "https://67d97c3900348dd3e2ab4af0.mockapi.io/api/lieu_intervention/
 
 L'URL provient de `https://mockapi.io/projects` qui est un projet permettant de générer de fausses API sans utiliser de ressources internes afin de tester son application. Il n'y a plus qu'à remplacer l'URL par la véritable API. Quant au androidID, il peut être changer par le n°IMEI ou de série à condition d'installer l'application en application système. En effet, à partir de la version 10 d'Android, on ne peut plus accèder à ces données sans que l'application ne soit une application système.
 
-Dans le fichier `OsmAnd/src/net/osmand/plus/routing/RoutingHelper.java`, un système permettant de supprimer automatiquement le lieu d'intervention une fois arrivé sur place a été mis en place. Pour être pris, le lieu d'intervention est supprimé à condition que le guidage vers le lieu d'intervention ait été activé et que le véhicule soit arrivé à destination. Dans certains cas, cette suppression n'est pas automatique (ex: le véhicule arrive à proximité de l'intervention mais se trouve bloqué par un obstacle). Pas de panique, la nouvelle intervention écrasera la précédente.
+Dans le fichier `OsmAnd/src/net/osmand/plus/routing/RoutingHelper.java`, un système permettant de supprimer automatiquement le lieu d'intervention une fois arrivé sur place a été mis en place. Le lieu d'intervention est supprimé à condition que le guidage vers le lieu d'intervention ait été activé et que le véhicule soit arrivé à destination. Dans certains cas, cette suppression n'est pas automatique (ex: le véhicule arrive à proximité de l'intervention mais se trouve bloqué par un obstacle). Pas de panique, la nouvelle intervention écrasera la précédente.
 
-> La seule spécificité à laquelle il faudra prêter attention dans ce fichier est le système de précision des coordonnées. OsmAnd utilise une précision de 14 chiffres après la virgule pour les coordonnées tandis que dans l'API test, une précision de 6 chiffres a été utilisé. C'est la raison pour laquelle à la ligne 270 et 271, on norme les résultats avec ceux de l'API. On peut donc soit adapté son API pour qu'il y ait une précision de 6 chiffres après la virgule soit modifier le code afin qu'il accepte une plus grande ou plus petite précision.
+> La seule spécificité à laquelle il faudra prêter attention dans ce fichier est le système de précision des coordonnées. OsmAnd utilise une précision de 14 chiffres après la virgule pour les coordonnées tandis que dans l'API test, une précision de 6 chiffres a été utilisé. C'est la raison pour laquelle à la ligne 270 et 271 du fichier `OsmAnd/src/net/osmand/plus/routing/RoutingHelper.java`, on norme les résultats avec ceux de l'API. On peut donc soit adapté son API pour qu'il y ait une précision de 6 chiffres après la virgule soit modifier le code afin qu'il accepte une plus grande ou plus petite précision.
 
 ## L'enregistrement d'itinéraire
 
-L'extension d'enregistrement d'itinéraire est activé par défaut. Le logo ![1743772023066](image/README/1743772023066.png) et ![1743772060185](image/README/1743772060185.png) a été désactivé afin de rendre la carte plus lisible. On peut néanmoins l'activer manuellement en suivant la procédure ci-dessous.
+L'extension d'enregistrement d'itinéraire est activé par défaut. Le logo ![1743772023066](image/README/1743772023066.png) et ![1743772060185](image/README/1743772060185.png) a été désactivé afin de rendre la carte plus lisible. On peut néanmoins activer manuellement l'enregistrement d'itinéraire en suivant la procédure ci-dessous.
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/RISVblIZhe4)](https://youtu.be/RISVblIZhe4)
 
@@ -89,7 +89,7 @@ L'extension d'enregistrement d'itinéraire est activé par défaut. Le logo ![17
   Your browser does not support the video tag.
 </video>
 
-De plus l'enregistrement d'itinéraire est activé automatiquement dès que le guidage est actif et s'arrête dès que le guidage se finit. Dans le cas du SDIS 33, cela serait dans un but de RETEX (retour d'expérience), obtenir des données sur les vitesses de certains tronçons routier à certaines horaires, date, la justesse de la numérisation du graphe routier ...
+De plus l'enregistrement d'itinéraire est activé automatiquement dès que le guidage est actif et s'arrête dès que le guidage se termine que ce soit parce qu'on est arrivé à destination ou parce que l'utilisateur a décidé d'arrêter le guidage. Dans le cas du SDIS 33, cela serait dans un but de RETEX (retour d'expérience), obtenir des données sur les vitesses de certains tronçons routier à certaines horaires, date, la justesse de la numérisation du graphe routier etc.
 
 OsmAnd (OSM Automated Navigation Directions)
 --------------------------------------------
