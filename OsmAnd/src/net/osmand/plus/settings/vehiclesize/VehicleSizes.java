@@ -193,6 +193,8 @@ public abstract class VehicleSizes {
 		} else if (routerProfile == GeneralRouterProfile.CAR) {
 			if (DERIVED_PROFILE_TRUCK.equalsIgnoreCase(derivedProfile)) {
 				return new TruckSizes();
+			} else if ("VSAV".equalsIgnoreCase(derivedProfile)) {
+				return new VSAVSizes();
 			} else if (DERIVED_PROFILE_MOTORCYCLE.equalsIgnoreCase(derivedProfile)) {
 				return new MotorcycleSizes();
 			} else {

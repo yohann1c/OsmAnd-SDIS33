@@ -1025,6 +1025,7 @@ You need to activate the sensor so OsmAnd can find it.</string>
     <string name="disable_vertex_hillshade_3d">Disable vertex hillshade in 3D</string>
     <string name="enable_3d_maps">Enable 3D maps</string>
     <string name="common_weight_limit_error">Minimum value is \"%1$s\" %2$s. Use the "\"%3$s\"" profile if the vehicle weight is less than the minimum value.</string>
+    <string name="common_weight_limit_error_max">La valeur maximale est \"%1$s\" %2$s. Si le poids de votre véhicule est supérieur à cette valeur, utilisez le profil adapté.</string>
     <string name="shared_string_pounds">pounds</string>
     <string name="metric_lbs">lbs</string>
     <string name="app_mode_moped">Moped</string>

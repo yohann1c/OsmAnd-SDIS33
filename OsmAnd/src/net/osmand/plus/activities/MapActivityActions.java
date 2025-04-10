@@ -487,7 +487,7 @@ public class MapActivityActions extends MapActions {
 				.setIcon(R.drawable.ic_action_settings)
 				.setListener((uiAdapter, view, item, isChecked) -> {
 					app.logEvent("drawer_settings_new_open");
-					activity.onOsmAndSettingsCustomized();
+					activity.getFragmentsHelper().showSettings();
 					return true;
 				}));
 

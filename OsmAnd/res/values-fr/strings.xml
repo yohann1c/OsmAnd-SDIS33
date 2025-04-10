@@ -4755,6 +4755,7 @@
     <string name="shared_string_pounds">livres</string>
     <string name="free_maps_updates">Mises à jour gratuites (urgence)</string>
     <string name="common_weight_limit_error">La valeur minimale est \"%1$s\" %2$s. Si le poids de votre véhicule est inférieur à cette valeur, utilisez le profil \"%3$s\".</string>
+    <string name="common_weight_limit_error_max">La valeur maximale est \"%1$s\" %2$s. Si le poids de votre véhicule est supérieur à cette valeur, utilisez le profil adapté.</string>
     <string name="weather_forecast">Prévisions météo</string>
     <string name="offline_weather_forecast_desc">Vous pouvez télécharger les prévisions météo des 7 prochains jours.</string>
     <string name="offline_weather_forecast">Prévisions météo hors-ligne</string>

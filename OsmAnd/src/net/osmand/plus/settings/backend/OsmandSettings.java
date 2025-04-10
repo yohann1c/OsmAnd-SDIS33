@@ -1145,7 +1145,6 @@ public class OsmandSettings {
 	public final OsmandPreference<Float> FUEL_TANK_CAPACITY = new FloatPreference(this,
 			"fuel_tank_capacity", OBDDataComputer.DEFAULT_FUEL_TANK_CAPACITY).makeProfile();
 
-
 	// cache of metrics constants as they are used very often
 	public final OsmandPreference<RelativeDirectionStyle> DIRECTION_STYLE = new EnumStringPreference<RelativeDirectionStyle>(this,
 			"direction_style", RelativeDirectionStyle.SIDEWISE, RelativeDirectionStyle.values()).makeProfile().cache();
@@ -1225,6 +1224,7 @@ public class OsmandSettings {
 	{
 		DERIVED_PROFILE.setModeDefaultValue(ApplicationMode.MOTORCYCLE, "motorcycle");
 		DERIVED_PROFILE.setModeDefaultValue(ApplicationMode.TRUCK, "truck");
+		DERIVED_PROFILE.setModeDefaultValue(ApplicationMode.VSAV, "VSAV");
 	}
 
 	public final CommonPreference<String> ROUTING_PROFILE = new StringPreference(this, "routing_profile", "").makeProfile().cache();

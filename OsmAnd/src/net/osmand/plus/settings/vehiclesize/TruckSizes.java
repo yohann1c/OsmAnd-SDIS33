@@ -22,22 +22,22 @@ public class TruckSizes extends VehicleSizes {
 	protected void collectSizesData() {
 		ThemedIconId icon = new ThemedIconId(R.drawable.img_help_width_limit_day, R.drawable.img_help_width_limit_night);
 		Assets assets = new Assets(icon, R.string.width_limit_description);
-		Limits limits = new Limits(1.7f, 2.5f);
+		Limits limits = new Limits(2.5f, 2.5f);
 		add(WIDTH, assets, limits);
 
 		icon = new ThemedIconId(R.drawable.img_help_height_limit_day, R.drawable.img_help_height_limit_night);
 		assets = new Assets(icon, R.string.height_limit_description);
-		limits = new Limits(1.5f, 4.5f);
+		limits = new Limits(3.1f, 3.4f);
 		add(HEIGHT, assets, limits);
 
 		icon = new ThemedIconId(R.drawable.img_help_length_limit_day, R.drawable.img_help_length_limit_night);
 		assets = new Assets(icon, R.string.lenght_limit_description);
-		limits = new Limits(4.5f, 12f);
+		limits = new Limits(6.7f, 8.2f);
 		add(LENGTH, assets, limits);
 
 		icon = new ThemedIconId(R.drawable.img_help_weight_limit_day, R.drawable.img_help_weight_limit_night);
 		assets = new Assets(icon, R.string.weight_limit_description);
-		limits = new Limits(3.5f, 16f);
+		limits = new Limits(14f, 26f);
 		add(WEIGHT, assets, limits);
 	}
 
@@ -49,12 +49,21 @@ public class TruckSizes extends VehicleSizes {
 			Limits limits = VehicleAlgorithms.convertWeightLimitsByMetricSystem(
 					data.getLimits(), metric.getWeightMetric(), useKilogramsInsteadOfTons());
 			float min = limits.getMin();
+			float max = limits.getMax();
 			if (value < min) {
 				String errorMessagePattern = ctx.getString(R.string.common_weight_limit_error);
 				String minWeightFormatted = formatValue(min);
 				String metricStr = ctx.getString(getMetricStringId(type, metric));
 				String drivingProfileName = ctx.getString(ApplicationMode.CAR.getNameKeyResource());
 				String message = String.format(errorMessagePattern, minWeightFormatted, metricStr, drivingProfileName);
+				error.append(message);
+				return false;
+			}
+			if (value > max) {
+				String errorMessagePattern = ctx.getString(R.string.common_weight_limit_error_max);
+				String maxWeightFormatted = formatValue(max);
+				String metricStr = ctx.getString(getMetricStringId(type, metric));
+				String message = String.format(errorMessagePattern, maxWeightFormatted, metricStr);
 				error.append(message);
 				return false;
 			}
