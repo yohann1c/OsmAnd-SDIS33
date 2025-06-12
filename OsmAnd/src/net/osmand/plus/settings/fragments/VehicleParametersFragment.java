@@ -68,6 +68,14 @@ public class VehicleParametersFragment extends BaseSettingsFragment {
 				showFuelCategory(parameters, routerProfile);
 				showOtherCategory(parameters, routerProfile);
 			}
+
+			//VSAV
+			ApplicationMode vsav = ApplicationMode.VSAV;
+			Map<String, GeneralRouter.RoutingParameter> parameters = RoutingHelperUtils.getParametersForDerivedProfile(vsav, router);
+			GeneralRouter.GeneralRouterProfile routerProfile = GeneralRouter.GeneralRouterProfile.CAR;
+			setupVehiclePropertyPref(parameters.get(VEHICLE_WEIGHT), routerProfile, "VSAV","2.7");
+			setupVehiclePropertyPref(parameters.get(VEHICLE_WIDTH), routerProfile, "VSAV","2.1");
+
 		} else {
 			setupCategoryPref(R.string.shared_string_other);
 			setupDefaultSpeedPref();
@@ -121,10 +129,10 @@ public class VehicleParametersFragment extends BaseSettingsFragment {
 			setupCategoryPref(R.string.shared_strings_dimensions);
 		}
 
-		setupVehiclePropertyPref(height, routerProfile, derivedProfile);
-		setupVehiclePropertyPref(weight, routerProfile, derivedProfile);
-		setupVehiclePropertyPref(width, routerProfile, derivedProfile);
-		setupVehiclePropertyPref(length, routerProfile, derivedProfile);
+		setupVehiclePropertyPref(height, routerProfile, derivedProfile,null);
+		setupVehiclePropertyPref(weight, routerProfile, derivedProfile,null);
+		setupVehiclePropertyPref(width, routerProfile, derivedProfile,null);
+		setupVehiclePropertyPref(length, routerProfile, derivedProfile,null);
 	}
 
 	private void setupCategoryPref(int titleId) {
@@ -150,7 +158,11 @@ public class VehicleParametersFragment extends BaseSettingsFragment {
 
 	private void setupVehiclePropertyPref(@Nullable RoutingParameter parameter,
 	                                      @Nullable GeneralRouterProfile profile,
-	                                      @Nullable String derivedProfile) {
+	                                      @Nullable String derivedProfile,
+										 String value) {
+		System.out.println(parameter);
+		System.out.println(profile);
+		System.out.println(derivedProfile);
 		if (parameter == null || profile == null) {
 			return;
 		}
@@ -164,11 +176,15 @@ public class VehicleParametersFragment extends BaseSettingsFragment {
 
 		String title = AndroidUtils.getRoutingStringPropertyName(app, parameterId, parameter.getName());
 		String description = AndroidUtils.getRoutingStringPropertyDescription(app, parameterId, parameter.getDescription());
-		String defValue = parameter.getDefaultString();
 		ApplicationMode appMode = getSelectedAppMode();
+		String defValue = parameter.getDefaultString();
+		if (value != null) {
+			defValue = value;
+		}
 		StringPreference preference = (StringPreference) settings.getCustomRoutingProperty(parameterId, defValue);
 
 		SizePreference uiPreference = new SizePreference(requireContext());
+		System.out.println(requireContext());
 		uiPreference.setKey(preference.getId());
 		uiPreference.setSizeType(type);
 		uiPreference.setVehicleSizes(vehicle);
