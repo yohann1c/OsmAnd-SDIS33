@@ -170,23 +170,17 @@ tasks.register('validateTranslations') {
 }
 
 tasks.register('downloadWorldMiniBasemap', Download) {
-	src 'https://creator.osmand.net/basemap/World_basemap_mini_2.obf'
+	src 'https://builder.osmand.net/basemap/World_basemap_mini_2.obf'
 	dest 'assets/World_basemap_mini.obf'
 	onlyIfModified true
 }
 
 tasks.register('downloadWorldMiniBasemapAnt') {
 	doLast {
-		ant.get(src: 'https://creator.osmand.net/basemap/World_basemap_mini_2.obf', dest: 'assets/World_basemap_mini.obf', skipexisting: 'true')
+		ant.get(src: 'https://builder.osmand.net/basemap/World_basemap_mini_2.obf', dest: 'assets/World_basemap_mini.obf', skipexisting: 'true')
 	}
 }
 
-tasks.register('gironde', Copy) {
-	from("../../resources/data") {
-		include "France_new-aquitaine_gironde_europe.obf"
-	}
-	into "assets"
-}
 tasks.register('satellite', Copy) {
 	from("../../resources/data") {
 		include "satellite.metainfo"
@@ -199,12 +193,6 @@ tasks.register('profile', Copy) {
 	}
 	into "assets"
 }
-/*tasks.register('cartope', Copy) {
-	from("../../resources/data") {
-		include "carto_ope.sqlitedb"
-	}
-	into "assets"
-}*/
 
 tasks.register('collectVoiceAssets', Sync) {
 	from "../../resources/voice"
@@ -324,10 +312,8 @@ tasks.register('collectExternalResources') {
 			copyPoiCategories,
 			copyRouteActivities,
 			downloadWorldMiniBasemap,
-			gironde,
 			satellite,
 			profile,
-			//cartope,
 			collectTestResources,
 			copy3DModels
 }

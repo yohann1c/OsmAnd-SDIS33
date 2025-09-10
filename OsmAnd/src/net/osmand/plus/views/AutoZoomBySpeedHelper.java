@@ -185,7 +185,7 @@ public class AutoZoomBySpeedHelper implements ManualZoomListener, TouchListener 
 	@Nullable
 	public ComplexZoom calculateRawZoomBySpeedForChart(@NonNull MapRendererView mapRenderer, float currentZoom, double lat, double lon, float rotation, float speed) {
 		OsmandMapTileView mapView = app.getOsmandMap().getMapView();
-		MapRendererState state = mapRenderer.getState();
+		MapState state = mapRenderer.getState().getMapState();
 
 		AutoZoomMap autoZoomScale = settings.AUTO_ZOOM_MAP_SCALE.get();
 
