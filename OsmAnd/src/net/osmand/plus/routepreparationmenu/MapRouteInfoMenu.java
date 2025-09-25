@@ -331,24 +331,22 @@ public class MapRouteInfoMenu implements IRouteInformationListener, CardListener
 		TargetPointsHelper targetPointsHelper = app.getTargetPointsHelper();
 		String androidId = DeviceUtils.getAndroidId(app.getApplicationContext());
 		String url = "https://67d97c3900348dd3e2ab4af0.mockapi.io/api/lieu_intervention/intervention?android_id=" + androidId; // Fake API
-		switch (pointType) {
-			case START:
-				targetPointsHelper.setStartPoint(latLon, true, pd);
-				break;
-			case TARGET:
-				targetPointsHelper.navigateToPoint(latLon, true, -1, pd);
-				break;
-			case INTERMEDIATE:
-				targetPointsHelper.navigateToPoint(latLon, true, targetPointsHelper.getIntermediatePoints().size(), pd);
-				break;
-			case HOME:
-				favorites.setSpecialPoint(latLon, SpecialPointType.HOME, address);
-				break;
-		}
-		ApiClient.sendGetRequest(url, new ApiClient.ApiCallback() {
+				ApiClient.sendGetRequest(url, new ApiClient.ApiCallback() {
 			public void onSuccess(LatLon resultLatLon) {
 				new Handler(Looper.getMainLooper()).post(() -> {
 					switch (pointType) {
+						case START:
+							targetPointsHelper.setStartPoint(latLon, true, pd);
+							break;
+						case TARGET:
+							targetPointsHelper.navigateToPoint(latLon, true, -1, pd);
+							break;
+						case INTERMEDIATE:
+							targetPointsHelper.navigateToPoint(latLon, true, targetPointsHelper.getIntermediatePoints().size(), pd);
+							break;
+						case HOME:
+							favorites.setSpecialPoint(latLon, SpecialPointType.HOME, address);
+							break;
 						case WORK:
 							app.showToastMessage("Récupération du lieu d'intervention.");
 							favorites.setSpecialPoint(resultLatLon, SpecialPointType.WORK, address);
@@ -356,14 +354,11 @@ public class MapRouteInfoMenu implements IRouteInformationListener, CardListener
 					}
 				});
 			}
+
 			public void onError(Exception e) {
 				new Handler(Looper.getMainLooper()).post(() -> {
-					switch (pointType) {
-						case WORK:
-							e.printStackTrace();
-							app.showToastMessage("Erreur lors de la récupération du lieu d'intervention.");
-							break;
-					}
+					e.printStackTrace();
+					app.showToastMessage("Erreur lors de la récupération du lieu d'intervention.");
 				});
 			}
 		});
