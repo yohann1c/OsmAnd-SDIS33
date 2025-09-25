@@ -3,7 +3,6 @@ package net.osmand.plus.routing;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import  net.osmand.plus.plugins.monitoring.SavingTrackHelper;
 import net.osmand.Location;
 import net.osmand.LocationsHolder;
 import net.osmand.PlatformUtil;
@@ -239,7 +238,6 @@ public class RoutingHelper {
 			// clear last fixed location
 			this.lastProjection = null;
 			setFollowingMode(false);
-			new SavingTrackHelper(app).saveDataToGpx(app.getAppCustomization().getTracksDir());;
 		}
 		transportRoutingHelper.clearCurrentRoute(newFinalLocation);
 	}
@@ -576,7 +574,6 @@ public class RoutingHelper {
 					//settings.setApplicationMode(settings.DEFAULT_APPLICATION_MODE.get());
 				});
 				finishCurrentRoute();
-				new SavingTrackHelper(app).saveDataToGpx(app.getAppCustomization().getTracksDir());;
 				// targets.clearPointToNavigate(false);
 				return true;
 			}
