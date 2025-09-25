@@ -10,7 +10,6 @@
 	- For wording and consistency, please note https://docs.osmand.net/docs/technical/contributions/translating-osmand
 	Thx - Hardy
 -->
-    <string name="intervention">intervention</string>
     <string name="shared_string_navigation_firehouse">Naviguer vers caserne</string>
     <string name="shared_string_navigation_hospital">Naviguer vers urgence</string>
     <string name="shared_string_measure_distance">Mesurer une distance</string>
@@ -3095,7 +3094,7 @@ You need to activate the sensor so OsmAnd can find it.</string>
     <string name="previous_route">Previous route</string>
     <string name="add_home">Add home</string>
     <string name="add_work">Add work</string>
-    <string name="work_button">Intervention</string>
+    <string name="work_button">Work</string>
     <string name="cubic_m">m³</string>
     <string name="metric_ton">t</string>
     <string name="shared_string_capacity">Capacity</string>
