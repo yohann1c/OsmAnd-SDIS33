@@ -6,6 +6,8 @@ import static net.osmand.aidlapi.OsmAndCustomizationConstants.NAVIGATION_OPTIONS
 import static net.osmand.plus.routepreparationmenu.MapRouteInfoMenu.MapRouteMenuType.ROUTE_DETAILS;
 import static net.osmand.plus.routepreparationmenu.MapRouteInfoMenu.MapRouteMenuType.ROUTE_INFO;
 
+import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.PointF;
@@ -13,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,6 +61,7 @@ import net.osmand.plus.routepreparationmenu.data.parameters.MuteSoundRoutingPara
 import net.osmand.plus.routepreparationmenu.data.parameters.OtherLocalRoutingParameter;
 import net.osmand.plus.routepreparationmenu.data.parameters.ShowAlongTheRouteItem;
 import net.osmand.plus.settings.backend.DeviceUtils;
+import net.osmand.plus.utils.AndroidNetworkUtils;
 import net.osmand.shared.gpx.GpxFile;
 import net.osmand.shared.gpx.GpxHelper;
 import net.osmand.shared.gpx.primitives.WptPt;
@@ -123,6 +127,9 @@ import net.osmand.util.Algorithms;
 import net.osmand.util.MapUtils;
 
 import org.apache.commons.logging.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -343,20 +350,6 @@ public class MapRouteInfoMenu implements IRouteInformationListener, CardListener
 				new Handler(Looper.getMainLooper()).post(() -> {
 					switch (pointType) {
 						case WORK:
-							try {
-								List<FavouritePoint> pointFav = favorites.getGroup("personal").getPoints();
-								FavouritePoint inter = null;
-								for (int i = 0; i < pointFav.size(); i++) {
-									String nom = pointFav.get(i).getName();
-									if (nom == "Intervention") {
-										inter = pointFav.get(i);
-									}
-								}
-								LatLon coordonnees = new LatLon(inter.getLatitude(), inter.getLongitude());
-								if (coordonnees != resultLatLon) {
-									favorites.deleteFavourite(inter, false);
-								}
-							} catch (Exception e) {}
 							app.showToastMessage("Récupération du lieu d'intervention.");
 							favorites.setSpecialPoint(resultLatLon, SpecialPointType.WORK, address);
 							break;

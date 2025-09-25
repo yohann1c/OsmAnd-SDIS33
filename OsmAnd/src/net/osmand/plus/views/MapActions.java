@@ -389,7 +389,7 @@ public class MapActions {
 		}
 	}
 
-	public void startRoutePlanningWithDestination(LatLon latLon, PointDescription pointDescription,
+	private void startRoutePlanningWithDestination(LatLon latLon, PointDescription pointDescription,
 			TargetPointsHelper targets) {
 		MapActivity activity = getMapActivity();
 		MapActions mapActions = activity != null ? activity.getMapActions() : app.getOsmandMap().getMapActions();
