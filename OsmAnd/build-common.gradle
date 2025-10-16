@@ -187,6 +187,12 @@ tasks.register('satellite', Copy) {
 	}
 	into "assets/Satellite IGN 2024"
 }
+tasks.register('cartope', Copy) {
+	from("../../resources/data") {
+		include "plan_operationel.metainfo"
+	}
+	into "assets/Carte operationnelle"
+}
 tasks.register('profile', Copy) {
 	from("../../resources/data") {
 		include "profile.osf"
@@ -313,6 +319,7 @@ tasks.register('collectExternalResources') {
 			copyRouteActivities,
 			downloadWorldMiniBasemap,
 			satellite,
+			cartope,
 			profile,
 			collectTestResources,
 			copy3DModels
