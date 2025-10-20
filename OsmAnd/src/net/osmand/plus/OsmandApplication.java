@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import net.osmand.osm.AbstractPoiType;
 import net.osmand.plus.configmap.tracks.TrackSortModesHelper;
 import net.osmand.plus.plugins.OsmandPlugin;
 import net.osmand.plus.poi.PoiUIFilter;
+import net.osmand.plus.quickaction.QuickAction;
 import net.osmand.plus.shared.OsmAndContextImpl;
 import net.osmand.PlatformUtil;
 import net.osmand.aidl.OsmandAidlApi;
@@ -124,6 +126,7 @@ import net.osmand.plus.utils.UiUtilities;
 import net.osmand.plus.views.OsmandMap;
 import net.osmand.plus.views.PointImageUtils;
 import net.osmand.plus.views.corenative.NativeCoreContext;
+import net.osmand.plus.views.mapwidgets.configure.buttons.QuickActionButtonState;
 import net.osmand.plus.views.mapwidgets.utils.AverageGlideComputer;
 import net.osmand.plus.views.mapwidgets.utils.AverageSpeedComputer;
 import net.osmand.plus.voice.CommandPlayer;
@@ -307,6 +310,39 @@ public class OsmandApplication extends MultiDexApplication {
 		for (AbstractPoiType t : poiTypes.getCategories()) {
 			poiFilters.addSelectedPoiFilter(new PoiUIFilter(t, this, ""));
 		}
+
+		// Mise en place du bouton d'action rapide
+		QuickActionButtonState buttonState = new QuickActionButtonState(this, QuickActionButtonState.DEFAULT_BUTTON_ID);
+		buttonState.setEnabled(true);
+//		String test = buttonState.getQuickActionsPref().get();
+//		System.out.println(test);
+		mapButtonsHelper.addQuickActionButtonState(buttonState); // l'ajoute aux préférences
+
+		// Actions affiliées au bouton d'action rapide
+
+		String json = "[{\"actionType\":\"mapoverlay.change\",\"id\":1760952783970,\"name\":\"Sur-couches\",\"params\":" +
+				"{\"dialog\":\"true\",\"overlays\":\"[{\\\"first\\\":\\\"Satellite IGN 2024\\\",\\\"second\\\":\\\"Satellite IGN 2024\\\"}," +
+				"{\\\"first\\\":\\\"Carte operationnelle\\\",\\\"second\\\":\\\"Carte operationnelle\\\"}," +
+				"{\\\"first\\\":\\\"OsmAnd (online tiles)\\\",\\\"second\\\":\\\"OsmAnd (online tiles)\\\"}]\"}}," +
+				"{\"actionType\":\"trip.recording.startpause\",\"id\":1760952783973,\"params\":{}}," +
+				"{\"actionType\":\"finish.trip.recording\",\"id\":1760952783975,\"params\":{}}," +
+				"{\"actionType\":\"mapillary.showhide\",\"id\":1760952783976,\"params\":{}}]";
+		List<QuickAction> actions = mapButtonsHelper.parseActionsFromJson(json);
+		if (actions == null) {
+			// JSON invalide ou parser a échoué — gérer l'erreur
+			Log.e("MyApp", "Impossible de parser le JSON des QuickActions");
+		} else {
+			// 3) Mettre à jour et sauvegarder les actions du bouton.
+			// updateQuickActions appelle en interne buttonState.saveActions(gson) via onQuickActionsChanged(...)
+			mapButtonsHelper.updateQuickActions(buttonState, actions);
+			// Les listeners seront notifiés automatiquement
+		}
+		String test = buttonState.getQuickActionsPref().get();
+		System.out.println(test);
+		buttonState.copyForMode(ApplicationMode.DEFAULT, ApplicationMode.VSAV);
+		buttonState.copyForMode(ApplicationMode.DEFAULT, ApplicationMode.CAR);
+		buttonState.copyForMode(ApplicationMode.DEFAULT, ApplicationMode.TRUCK);
+		buttonState.copyForMode(ApplicationMode.DEFAULT, ApplicationMode.BOAT);
 	}
 
 	public boolean isPlusVersionInApp() {
@@ -793,6 +829,9 @@ public class OsmandApplication extends MultiDexApplication {
 	}
 
 	public void startApplication() {
+		QuickActionButtonState buttonState = new QuickActionButtonState(this, QuickActionButtonState.DEFAULT_BUTTON_ID);
+		String test = buttonState.getQuickActionsPref().get();
+		System.out.println(test);
 		feedbackHelper.setExceptionHandler();
 		if (NetworkUtils.getProxy() == null && settings.isProxyEnabled()) {
 			try {

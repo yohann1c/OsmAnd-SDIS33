@@ -64,6 +64,7 @@ assets/OsmAndCore_ResourcesBundle.index
 assets/OsmAndCore_ResourcesBundle/
 assets/weather/*
 assets/proj.db
+assets/profile.osf
 assets/heightmap/*
 assets/color-palette/*
 assets/models/*

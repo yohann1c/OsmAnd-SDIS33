@@ -38,7 +38,7 @@ public class QuickAction {
     private Map<String, String> params;
     private QuickActionType actionType;
 
-    protected QuickAction() {
+    public QuickAction() {
         this(MapButtonsHelper.TYPE_ADD_ITEMS);
     }
 
