@@ -72,6 +72,7 @@ public class IndexConstants {
 	public static final String POI_TABLE = "poi";
 
 	public static final String INDEX_DOWNLOAD_DOMAIN = "download.osmand.net";
+	public static final String SDIS33_MAP_DOWNLOAD_DOMAIN ="192.0.0.4:8000";//"192.168.1.148:8000";
 	public static final String APP_DIR = "osmand/";
 	public static final String MAPS_PATH = "";
 	public static final String HIDDEN_DIR = "hidden/";
