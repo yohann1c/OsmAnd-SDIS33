@@ -365,7 +365,7 @@ public final class SurfaceRenderer implements DefaultLifecycleObserver, MapRende
 							offscreenMapRendererView.removeAllSymbolsProviders();
 							offscreenMapRendererView.resumeSymbolsUpdate();
 							offscreenMapRendererView.setSymbolsUpdateInterval(SYMBOLS_UPDATE_INTERVAL);
-							offscreenMapRendererView.enableBatterySavingMode();
+//							offscreenMapRendererView.enableBatterySavingMode();
 							mapRendererContext.setMapRendererView(offscreenMapRendererView);
 							mapView.setMinAllowedElevationAngle(MIN_ALLOWED_ELEVATION_ANGLE_AA);
 							float elevationAngle = mapView.normalizeElevationAngle(getApp().getSettings().getLastKnownMapElevation());
