@@ -1291,19 +1291,19 @@ public class OsmandSettings {
 
 	{
 		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.DEFAULT, 0);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.CAR, 1);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.BICYCLE, 2);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 3);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.TRUCK, 4);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.MOTORCYCLE, 5);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.MOPED, 6);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.PUBLIC_TRANSPORT, 7);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.TRAIN, 8);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.BOAT, 9);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.AIRCRAFT, 10);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.SKI, 11);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.HORSE, 12);
-		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.VSAV, 13);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.VSAV, 1);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.TRUCK, 2);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.CAR, 3);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.BICYCLE, 4);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.PEDESTRIAN, 5);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.MOTORCYCLE, 6);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.MOPED, 7);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.PUBLIC_TRANSPORT, 8);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.TRAIN, 9);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.BOAT, 10);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.AIRCRAFT, 11);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.SKI, 12);
+		APP_MODE_ORDER.setModeDefaultValue(ApplicationMode.HORSE, 13);
 	}
 
 	public final CommonPreference<Integer> APP_MODE_VERSION = new IntPreference(this, "app_mode_version", 0).makeProfile().cache();
