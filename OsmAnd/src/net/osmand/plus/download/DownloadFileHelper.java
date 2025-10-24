@@ -1,5 +1,8 @@
 package net.osmand.plus.download;
 
+import org.apache.commons.io.FilenameUtils;
+
+
 import net.osmand.IProgress;
 import net.osmand.IndexConstants;
 import net.osmand.PlatformUtil;
@@ -13,7 +16,6 @@ import net.osmand.plus.resources.ResourceManager;
 import net.osmand.plus.utils.AndroidNetworkUtils;
 import net.osmand.plus.utils.FileUtils;
 import net.osmand.util.Algorithms;
-
 import org.apache.commons.logging.Log;
 
 import java.io.File;
@@ -282,7 +284,7 @@ public class DownloadFileHelper {
 		} else {
 			if (de.unzipFolder) {
 				de.fileToDownload.mkdirs();
-			} 
+			}
 			ZipInputStream zipIn = new ZipInputStream(fin);
 			ZipEntry entry = null;
 			boolean first = true;
@@ -298,14 +300,14 @@ public class DownloadFileHelper {
 					} else {
 						String name = entry.getName();
 						// small simplification
-						int ind = name.lastIndexOf('_');
+						/*int ind = name.lastIndexOf('_');
 						if (ind > 0) {
 							// cut version
 							int i = name.indexOf('.', ind);
 							if (i > 0) {
 								name = name.substring(0, ind) + name.substring(i);
 							}
-						}
+						}*/
 						fs = new File(de.fileToDownload.getParent(), name);
 					}
 				} else {
@@ -318,10 +320,21 @@ public class DownloadFileHelper {
 		fin.close();
 	}
 
-	private void copyFile(IndexItem.DownloadEntry de, IProgress progress, 
+	private void copyFile(IndexItem.DownloadEntry de, IProgress progress,
 			CountingMultiInputStream countIS, int length, InputStream toRead, File targetFile)
 			throws IOException {
 		targetFile.getParentFile().mkdirs();
+		//add (1)(2)(3) etc si fichier existe déjà
+		int i = 0;
+        while (targetFile.exists()) {
+            i++;
+			String fileName = FilenameUtils.removeExtension(targetFile.getName());
+			if (fileName.endsWith(")")) {
+				fileName = fileName.substring(0, fileName.length() - 3);
+			}
+            targetFile = new File(targetFile.getParent(), fileName + "(" + i + ")." + FilenameUtils.getExtension(targetFile.getName()));
+        }
+
 		FileOutputStream out = new FileOutputStream(targetFile);
 		try {
 			int read;

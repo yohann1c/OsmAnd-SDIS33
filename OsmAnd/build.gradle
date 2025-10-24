@@ -253,7 +253,8 @@ tasks.register('copyOsmAndCoreWithJNI') {
 }
 
 dependencies {
-	openglImplementation fileTree(include:  ['QtAndroid.jar', 'QtAndroidBearer.jar'], dir: 'libs')
+	implementation 'commons-io:commons-io:2.20.0'
+    openglImplementation fileTree(include:  ['QtAndroid.jar', 'QtAndroidBearer.jar'], dir: 'libs')
 	opengldebugImplementation fileTree(include:  ['QtAndroid.jar', 'QtAndroidBearer.jar'], dir: 'libs')
 
 	// Uncomment for local debug
