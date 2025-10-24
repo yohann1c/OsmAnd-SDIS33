@@ -2,6 +2,10 @@ package net.osmand.plus;
 
 import static net.osmand.IndexConstants.ROUTING_FILE_EXT;
 import static net.osmand.plus.settings.backend.ApplicationMode.valueOfStringKey;
+import static net.osmand.router.GeneralRouter.VEHICLE_HEIGHT;
+import static net.osmand.router.GeneralRouter.VEHICLE_LENGTH;
+import static net.osmand.router.GeneralRouter.VEHICLE_WEIGHT;
+import static net.osmand.router.GeneralRouter.VEHICLE_WIDTH;
 import static net.osmand.shared.settings.enums.MetricsConstants.KILOMETERS_AND_METERS;
 import static net.osmand.shared.settings.enums.MetricsConstants.MILES_AND_FEET;
 import static net.osmand.shared.settings.enums.MetricsConstants.MILES_AND_METERS;
@@ -42,6 +46,14 @@ import net.osmand.plus.plugins.OsmandPlugin;
 import net.osmand.plus.poi.PoiUIFilter;
 import net.osmand.plus.profiles.ProfileIconColors;
 import net.osmand.plus.quickaction.QuickAction;
+import net.osmand.plus.routing.RoutingHelperUtils;
+import net.osmand.plus.settings.backend.ApplicationModeBean;
+import net.osmand.plus.settings.backend.backup.items.ProfileSettingsItem;
+import net.osmand.plus.settings.backend.preferences.StringPreference;
+import net.osmand.plus.settings.fragments.VehicleParametersFragment;
+import net.osmand.plus.settings.preferences.SizePreference;
+import net.osmand.plus.settings.vehiclesize.SizeType;
+import net.osmand.plus.settings.vehiclesize.VehicleSizes;
 import net.osmand.plus.shared.OsmAndContextImpl;
 import net.osmand.PlatformUtil;
 import net.osmand.aidl.OsmandAidlApi;
@@ -350,6 +362,39 @@ public class OsmandApplication extends MultiDexApplication {
 //			Copier ce bouton dans tous les modes
 			buttonState.copyForMode(ApplicationMode.DEFAULT, element);
 		});
+
+		// Poids
+		StringPreference weightPref = (StringPreference) settings.getCustomRoutingProperty(GeneralRouter.VEHICLE_WEIGHT, "0.0");
+		if (!weightPref.isSetForMode(ApplicationMode.VSAV)) {
+			weightPref.setModeValue(ApplicationMode.VSAV, "3.4999");
+		}
+		if (!weightPref.isSetForMode(ApplicationMode.TRUCK)) {
+			weightPref.setModeValue(ApplicationMode.TRUCK, "13.9999");
+		}
+		// Largeur
+		StringPreference widthPref = (StringPreference) settings.getCustomRoutingProperty(GeneralRouter.VEHICLE_WIDTH, "0.0");
+		if (!widthPref.isSetForMode(ApplicationMode.VSAV)) {
+			widthPref.setModeValue(ApplicationMode.VSAV, "2.0999");
+		}
+		if (!widthPref.isSetForMode(ApplicationMode.TRUCK)) {
+			widthPref.setModeValue(ApplicationMode.TRUCK, "2.4999");
+		}
+		// Longueur
+		StringPreference lengthPref = (StringPreference) settings.getCustomRoutingProperty(VEHICLE_LENGTH, "0.0");
+		if (!lengthPref.isSetForMode(ApplicationMode.VSAV)) {
+			lengthPref.setModeValue(ApplicationMode.VSAV, "5.9999");
+		}
+		if (!lengthPref.isSetForMode(ApplicationMode.TRUCK)) {
+			lengthPref.setModeValue(ApplicationMode.TRUCK, "6.6998997");
+		}
+		// Hauteur
+		StringPreference heightPref = (StringPreference) settings.getCustomRoutingProperty(VEHICLE_HEIGHT, "0.0");
+		if (!heightPref.isSetForMode(ApplicationMode.VSAV)) {
+			heightPref.setModeValue(ApplicationMode.VSAV, "2.6999002");
+		}
+		if (!heightPref.isSetForMode(ApplicationMode.TRUCK)) {
+			heightPref.setModeValue(ApplicationMode.TRUCK, "3.0999");
+		}
 	}
 
 	public boolean isPlusVersionInApp() {

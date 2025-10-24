@@ -68,14 +68,6 @@ public class VehicleParametersFragment extends BaseSettingsFragment {
 				showFuelCategory(parameters, routerProfile);
 				showOtherCategory(parameters, routerProfile);
 			}
-
-			//VSAV
-			ApplicationMode vsav = ApplicationMode.VSAV;
-			Map<String, GeneralRouter.RoutingParameter> parameters = RoutingHelperUtils.getParametersForDerivedProfile(vsav, router);
-			GeneralRouter.GeneralRouterProfile routerProfile = GeneralRouter.GeneralRouterProfile.CAR;
-			setupVehiclePropertyPref(parameters.get(VEHICLE_WEIGHT), routerProfile, "VSAV","2.7");
-			setupVehiclePropertyPref(parameters.get(VEHICLE_WIDTH), routerProfile, "VSAV","2.1");
-
 		} else {
 			setupCategoryPref(R.string.shared_string_other);
 			setupDefaultSpeedPref();
@@ -160,8 +152,8 @@ public class VehicleParametersFragment extends BaseSettingsFragment {
 	                                      @Nullable GeneralRouterProfile profile,
 	                                      @Nullable String derivedProfile,
 										 String value) {
-		System.out.println(parameter);
-		System.out.println(profile);
+		System.out.println(parameter.getName());
+		System.out.println(profile.toString());
 		System.out.println(derivedProfile);
 		if (parameter == null || profile == null) {
 			return;
