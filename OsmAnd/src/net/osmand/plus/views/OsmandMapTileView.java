@@ -2529,13 +2529,13 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 		return application.getOsmandMap().getMapLayers().getMeasurementToolLayer();
 	}
 
-	public void applyBatterySavingModeSetting(MapRendererView mapRenderer) {
+	/*public void applyBatterySavingModeSetting(MapRendererView mapRenderer) {
 		if (settings.BATTERY_SAVING_MODE.get()) {
 			mapRenderer.enableBatterySavingMode();
 		} else {
 			mapRenderer.disableBatterySavingMode();
 		}
-	}
+	}*/
 
 	public void applyGridSettings(MapRendererView mapRenderer) {
 		OsmandDevelopmentPlugin plugin = PluginsHelper.getPlugin(OsmandDevelopmentPlugin.class);
