@@ -403,75 +403,65 @@ public class MenuBuilder {
 	}
 
 	protected void buildPerLink(ViewGroup view) {
-
+		if(!amenity.getName().contains(" "))// est ce que on veut pas plutot s'arreter si on a moins de deux espaces plutot que si on en a au moins un?
+			return;
+		//
 		SharedPreferences perPref = app.getSharedPreferences("SDIS_per_pdf_path", Context.MODE_PRIVATE);
-		if(amenity.getName().contains(" ")) {
-			String pdfName = amenity.getName().substring(0, amenity.getName().indexOf(" ", amenity.getName().indexOf(" ")+1)).toUpperCase();			// Ne pas oublier le Uppercase
-			String pdfNameF = amenity.getName().substring(0, amenity.getName().indexOf(" ", amenity.getName().indexOf(" ")+1)).toUpperCase() + "F";			// Ne pas oublier le Uppercase
-			String pdfURI = perPref.getString(pdfName, null);
-			String pdfURIF = perPref.getString(pdfNameF, null);
-
-
-			String perName = amenity.getName();
-			Map<Integer, String> locationData = PointDescription.getLocationData(mapActivity, latLon.getLatitude(), latLon.getLongitude(), true);
-			String title = "Fiche PER pdf";
-			locationData.remove(PointDescription.LOCATION_LIST_HEADER);
-
-			LinearLayout llv = buildCollapsableContentView(mapActivity, true, true);
-			TextViewEx button = buildButtonInCollapsableView(mapActivity, false, false);
-			SpannableStringBuilder ssb = new SpannableStringBuilder();
-
-			if(pdfURI == null && pdfURIF == null)
-				ssb.append("Fiche PER non disponible");
-			else {
-				if(pdfURI != null) {
-					ssb.append(pdfURI.substring(pdfURI.lastIndexOf("/") + 1, pdfURI.length()));
-
-					button.setOnClickListener(v -> {
-						File file = new File(pdfURI);
-						//Uri pdfPath = Uri.fromFile(file);
-						Uri pdfPath = FileProvider.getUriForFile(getApplication().getApplicationContext(), BuildConfig.APPLICATION_ID + ".fileprovider", file);
-
-						Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-						pdfIntent.setDataAndType(pdfPath, "application/pdf");
-						pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-						pdfIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-						AndroidUtils.startActivityIfSafe(v.getContext(), pdfIntent);
-					});
-				}
-			}
-			button.setText(ssb);
-			llv.addView(button);
-
-			if (pdfURIF != null) {
-				TextViewEx buttonF = buildButtonInCollapsableView(mapActivity, false, false);
-				SpannableStringBuilder ssbF = new SpannableStringBuilder();
-				ssbF.append(pdfURIF.substring(pdfURIF.lastIndexOf("/") + 1, pdfURIF.length()));
-
-				buttonF.setOnClickListener(v -> {
-					File file = new File(pdfURIF);
-					Uri pdfPathF = FileProvider.getUriForFile(getApplication().getApplicationContext(), BuildConfig.APPLICATION_ID + ".fileprovider", file);
-
+		String pdfName = amenity.getName();
+		int secondSpaceIndex = amenity.getName().indexOf(" ", amenity.getName().indexOf(" ")+1);
+		if (secondSpaceIndex != -1) {
+			pdfName = pdfName.substring(0, secondSpaceIndex ).toUpperCase();
+		}
+			// Ne pas oublier le Uppercase
+		String pdfNameF =pdfName + "F";			// Ne pas oublier le Uppercase
+		String pdfURI = perPref.getString(pdfName, null);
+		String pdfURIF = perPref.getString(pdfNameF, null);
+		String perName = amenity.getName();
+		Map<Integer, String> locationData = PointDescription.getLocationData(mapActivity, latLon.getLatitude(), latLon.getLongitude(), true);
+		String title = "Fiche PER pdf";
+		locationData.remove(PointDescription.LOCATION_LIST_HEADER);
+		LinearLayout llv = buildCollapsableContentView(mapActivity, true, true);
+		TextViewEx button = buildButtonInCollapsableView(mapActivity, false, false);
+		SpannableStringBuilder ssb = new SpannableStringBuilder();
+		if(pdfURI == null && pdfURIF == null)
+			ssb.append("Fiche PER non disponible");
+		else {
+			if(pdfURI != null) {
+				ssb.append(pdfURI.substring(pdfURI.lastIndexOf("/") + 1, pdfURI.length()));
+				button.setOnClickListener(v -> {
+					File file = new File(pdfURI);
+					//Uri pdfPath = Uri.fromFile(file);
+					Uri pdfPath = FileProvider.getUriForFile(getApplication().getApplicationContext(), BuildConfig.APPLICATION_ID + ".fileprovider", file);
 					Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-					pdfIntent.setDataAndType(pdfPathF, "application/pdf");
+					pdfIntent.setDataAndType(pdfPath, "application/pdf");
 					pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 					pdfIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
 					AndroidUtils.startActivityIfSafe(v.getContext(), pdfIntent);
 				});
-				buttonF.setText(ssbF);
-				llv.addView(buttonF);
-
 			}
-			CollapsableView cv= new CollapsableView(llv, this, true);
-			buildRow(view, R.drawable.mm_works, null, title, 0, true, cv, false, 1,
-					false, null, false);
-
 		}
-
+		button.setText(ssb);
+		llv.addView(button);
+		if (pdfURIF != null) {
+			TextViewEx buttonF = buildButtonInCollapsableView(mapActivity, false, false);
+			SpannableStringBuilder ssbF = new SpannableStringBuilder();
+			ssbF.append(pdfURIF.substring(pdfURIF.lastIndexOf("/") + 1, pdfURIF.length()));
+			buttonF.setOnClickListener(v -> {
+				File file = new File(pdfURIF);
+				Uri pdfPathF = FileProvider.getUriForFile(getApplication().getApplicationContext(), BuildConfig.APPLICATION_ID + ".fileprovider", file);
+				Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+				pdfIntent.setDataAndType(pdfPathF, "application/pdf");
+				pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+				pdfIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+				AndroidUtils.startActivityIfSafe(v.getContext(), pdfIntent);
+			});
+			buttonF.setText(ssbF);
+			llv.addView(buttonF);
+			}
+		CollapsableView cv= new CollapsableView(llv, this, true);
+		buildRow(view, R.drawable.mm_works, null, title, 0, true, cv, false, 1, false, null, false);
 	}
 
 	protected void buildWithinRow(ViewGroup viewGroup) {

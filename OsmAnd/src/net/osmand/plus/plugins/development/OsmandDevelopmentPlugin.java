@@ -144,9 +144,9 @@ public class OsmandDevelopmentPlugin extends OsmandPlugin {
 		batterySavingModeListener = change -> {
 			OsmandMapTileView mapView = app.getOsmandMap().getMapView();
 			MapRendererView mapRenderer = mapView.getMapRenderer();
-			if (mapRenderer != null) {
+			/*if (mapRenderer != null) {
 				mapView.applyBatterySavingModeSetting(mapRenderer);
-			}
+			}*/
 		};
 		settings.BATTERY_SAVING_MODE.addListener(batterySavingModeListener);
 	}
