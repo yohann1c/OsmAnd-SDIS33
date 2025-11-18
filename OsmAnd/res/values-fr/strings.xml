@@ -1592,7 +1592,8 @@
     <string name="dahboard_options_dialog_title">Paramétrer le tableau de bord</string>
     <string name="shared_string_undo">Annuler</string>
     <string name="shared_string_skip">Ignorer</string>
-    <string name="app_name_osmand">OsmAnd</string>
+    <string name="app_name_osmand">Cartonav SP33</string>
+    <string name="app_name">Cartonav SP33</string>
     <string name="offline_maps_and_navigation">Cartes hors-ligne
 \n&amp; Guidage</string>
     <string name="commit_poi">Enregistrer le point d\'intérêt</string>
