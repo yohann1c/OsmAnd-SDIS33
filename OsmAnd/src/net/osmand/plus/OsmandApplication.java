@@ -256,12 +256,7 @@ public class OsmandApplication extends MultiDexApplication {
 	String json = "[{\"actionType\":\"mapoverlay.change\",\"id\":1760952783970,\"name\":\"Sur-couches\",\"params\":" +
 			"{\"dialog\":\"true\",\"overlays\":\"[{\\\"first\\\":\\\"Satellite IGN 2024\\\",\\\"second\\\":\\\"Satellite IGN 2024\\\"}," +
 			"{\\\"first\\\":\\\"Carte operationnelle\\\",\\\"second\\\":\\\"Carte operationnelle\\\"}," +
-			"{\\\"first\\\":\\\"OsmAnd (online tiles)\\\",\\\"second\\\":\\\"OsmAnd (online tiles)\\\"}]\"}}," +
-			"{\"actionType\":\"trip.recording.startpause\",\"id\":1760952783973,\"params\":{}}," +
-			"{\"actionType\":\"finish.trip.recording\",\"id\":1760952783975,\"params\":{}}," +
-			"{\"actionType\":\"mapillary.showhide\",\"id\":1760952783976,\"params\":{}}," +
-			"{\"actionType\":\"photo.note\",\"id\":1761118376425,\"name\":\"Ajouter - Note photo\",\"params\":{}}," +
-			"{\"actionType\":\"parking.add\",\"id\":1761119265473,\"name\":\"Ajouter - Place de stationnement\",\"params\":{}}]";
+			"{\\\"first\\\":\\\"OsmAnd (online tiles)\\\",\\\"second\\\":\\\"OsmAnd (online tiles)\\\"}]\"}}]";
 	// Typeface
 
 	@Override
