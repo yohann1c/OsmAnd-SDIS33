@@ -5822,8 +5822,8 @@ Download tile maps directly, or copy them as SQLite database files to OsmAnd\'s 
     <string name="shared_string_card_was_hidden">Card was hidden</string>
     <string name="shared_string_undo">Undo</string>
     <string name="shared_string_skip">Skip</string>
-    <string name="app_name_osmand">Cartonav SP33</string>
-    <string name="app_name">Cartonav SP33</string>
+    <string name="app_name_osmand">CartoNav SP33</string>
+    <string name="app_name">CartoNav SP33</string>
     <string name="offline_maps_and_navigation">Offline Maps\n&amp; Navigation</string>
     <string name="commit_poi">Commit POI</string>
     <string name="tab_title_basic">Basic</string>
