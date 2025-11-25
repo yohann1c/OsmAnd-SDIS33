@@ -83,7 +83,7 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 
 	@Override
 	public boolean isEnableByDefault() {
-		return true;
+		return false;
 	}
 
 	public OsmandMonitoringPlugin(OsmandApplication app) {
