@@ -85,7 +85,6 @@ public class WidgetsInitializer {
 	private void createTopWidgets() {
 		addWidgetInfo(COORDINATES_CURRENT_LOCATION);
 		addWidgetInfo(COORDINATES_MAP_CENTER);
-		addWidgetInfo(STREET_NAME);
 		addWidgetInfo(LANES);
 		addWidgetInfo(ROUTE_INFO);
 		addWidgetInfo(MARKERS_TOP_BAR);
@@ -93,6 +92,7 @@ public class WidgetsInitializer {
 
 	private void createBottomWidgets() {
 		addWidgetInfo(ELEVATION_PROFILE);
+		addWidgetInfo(STREET_NAME);
 	}
 
 	private void createLeftWidgets() {
