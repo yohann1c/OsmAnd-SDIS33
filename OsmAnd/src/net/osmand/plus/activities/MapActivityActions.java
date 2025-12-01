@@ -568,14 +568,6 @@ public class MapActivityActions extends MapActions {
 					return true;
 				}));
 
-		optionsMenuHelper.addItem(new ContextMenuItem(DRAWER_MEASURE_DISTANCE_ID)
-				.setTitleId(R.string.shared_string_measure_distance, activity)
-				.setIcon(R.drawable.ic_action_plan_route)
-				.setListener((uiAdapter, view, item, isChecked) -> {
-					StartPlanRouteBottomSheet.showInstance(activity.getSupportFragmentManager());
-					return true;
-				}));
-
 		optionsMenuHelper.addItem(new ContextMenuItem(DRAWER_HELP_ID)
 				.setTitleId(R.string.shared_string_help, activity)
 				.setIcon(R.drawable.ic_action_help)

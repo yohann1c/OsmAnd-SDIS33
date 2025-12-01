@@ -46,6 +46,7 @@ import net.osmand.plus.plugins.OsmandPlugin;
 import net.osmand.plus.poi.PoiUIFilter;
 import net.osmand.plus.profiles.ProfileIconColors;
 import net.osmand.plus.quickaction.QuickAction;
+import net.osmand.plus.routepreparationmenu.cards.MapBaseCard;
 import net.osmand.plus.routing.RoutingHelperUtils;
 import net.osmand.plus.settings.backend.ApplicationModeBean;
 import net.osmand.plus.settings.backend.backup.items.ProfileSettingsItem;
@@ -139,7 +140,10 @@ import net.osmand.plus.utils.UiUtilities;
 import net.osmand.plus.views.OsmandMap;
 import net.osmand.plus.views.PointImageUtils;
 import net.osmand.plus.views.corenative.NativeCoreContext;
+import net.osmand.plus.views.mapwidgets.WidgetsPanel;
+import net.osmand.plus.views.mapwidgets.configure.WidgetsSettingsHelper;
 import net.osmand.plus.views.mapwidgets.configure.buttons.QuickActionButtonState;
+import net.osmand.plus.views.mapwidgets.configure.dialogs.cards.ConfigureWidgetsCard;
 import net.osmand.plus.views.mapwidgets.utils.AverageGlideComputer;
 import net.osmand.plus.views.mapwidgets.utils.AverageSpeedComputer;
 import net.osmand.plus.voice.CommandPlayer;
@@ -256,7 +260,7 @@ public class OsmandApplication extends MultiDexApplication {
 	String json = "[{\"actionType\":\"mapoverlay.change\",\"id\":1760952783970,\"name\":\"Sur-couches\",\"params\":" +
 			"{\"dialog\":\"true\",\"overlays\":\"[{\\\"first\\\":\\\"Satellite IGN 2024\\\",\\\"second\\\":\\\"Satellite IGN 2024\\\"}," +
 			"{\\\"first\\\":\\\"Carte operationnelle\\\",\\\"second\\\":\\\"Carte operationnelle\\\"}," +
-			"{\\\"first\\\":\\\"OsmAnd (online tiles)\\\",\\\"second\\\":\\\"OsmAnd (online tiles)\\\"}]\"}}]";
+			"{\\\"first\\\":\\\"OpenStreetMap\\\",\\\"second\\\":\\\"OpenStreetMap\\\"}]\"}}]";
 	// Typeface
 
 	@Override

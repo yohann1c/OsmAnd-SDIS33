@@ -48,7 +48,7 @@ public class TileSourceManager {
 			+ MAPILLARY_ACCESS_TOKEN;
 
 	private static final TileSourceTemplate MAPNIK_SOURCE =
-			new TileSourceTemplate("OsmAnd (online tiles)", MAPNIK_URL, ".png", 19,
+			new TileSourceTemplate("OpenStreetMap", MAPNIK_URL, ".png", 19,
 					1, 512, 8, 18000);  //$NON-NLS-1$//$NON-NLS-2$
 	private static final TileSourceTemplate MAPILLARY_VECTOR_SOURCE =
 			new TileSourceTemplate("Mapillary (vector tiles)", MAPILLARY_VECTOR_URL,

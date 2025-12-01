@@ -124,6 +124,7 @@ public class WidgetsAvailabilityHelper {
 
 		// vertical
 		regWidgetVisibility(STREET_NAME, CAR);
+		regWidgetVisibility(STREET_NAME, VSAV);
 		regWidgetVisibility(LANES, CAR, BICYCLE);
 		regWidgetVisibility(MARKERS_TOP_BAR, all);
 
