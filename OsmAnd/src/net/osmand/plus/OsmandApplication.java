@@ -259,7 +259,7 @@ public class OsmandApplication extends MultiDexApplication {
 	private float density = 0f;
 	String json = "[{\"actionType\":\"mapoverlay.change\",\"id\":1760952783970,\"name\":\"Sur-couches\",\"params\":" +
 			"{\"dialog\":\"true\",\"overlays\":\"[{\\\"first\\\":\\\"Satellite IGN 2024\\\",\\\"second\\\":\\\"Satellite IGN 2024\\\"}," +
-			"{\\\"first\\\":\\\"Carte operationnelle\\\",\\\"second\\\":\\\"Carte operationnelle\\\"}," +
+			"{\\\"first\\\":\\\"Cartoguide numérique\\\",\\\"second\\\":\\\"Cartoguide numérique\\\"}," +
 			"{\\\"first\\\":\\\"OpenStreetMap\\\",\\\"second\\\":\\\"OpenStreetMap\\\"}]\"}}]";
 	// Typeface
 
