@@ -104,6 +104,8 @@ public class WidgetsAvailabilityHelper {
 		regWidgetVisibility(TIME_TO_DESTINATION, all);
 		regWidgetVisibility(CURRENT_SPEED, BICYCLE, BOAT, SKI, PUBLIC_TRANSPORT, AIRCRAFT, HORSE, TRAIN);
 		regWidgetVisibility(MAX_SPEED, none);
+		regWidgetVisibility(GPS_INFO, all);
+		regWidgetVisibility(RADIUS_RULER, all);
 		regWidgetVisibility(ALTITUDE_MAP_CENTER, PEDESTRIAN, BICYCLE);
 		regWidgetVisibility(ALTITUDE_MY_LOCATION, PEDESTRIAN, BICYCLE);
 
