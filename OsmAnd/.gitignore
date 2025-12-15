@@ -2,6 +2,7 @@ gradle
 gradlew
 gradlew.bat
 
+/gplayFreeLegacyArm64
 /net.osmand
 aarDependencies 
 libs/android*.jar

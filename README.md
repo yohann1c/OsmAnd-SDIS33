@@ -1,8 +1,8 @@
 ## Pour que ça fonctionne
 
-Installer Android Studio.
+Installer Android Studio et Git (ajouter Git dans la variable Path).
 
-Avoir les bonnes variables d'environnement:
+Avoir les bonnes variables d'environnement Windows:
 
 * ANDROID_HOME=C:\Users\USER\AppData\Local\Android\Sdk
 * JAVA_HOME=C:\Program Files\Java\jdk-19
@@ -15,7 +15,7 @@ mkdir osmand
 cd osmand
 @REM git clone https://github.com/osmandapp/OsmAnd-resources.git resources
 @REM https://github.com/yohann1c/OsmAnd-resources.git est en privé.
-git clone https://github.com/yohann1c/OsmAnd-resources.git resources
+git clone https://github.com/osmandapp/OsmAnd-resources.git resources
 git clone https://github.com/yohann1c/OsmAnd-SDIS33.git android
 git clone https://github.com/osmandapp/OsmAnd-core.git core-legacy
 git clone https://github.com/osmandapp/osmandapp.github.io help
@@ -28,6 +28,7 @@ Récupérer l'APK sur `./OSMAND/build/outputs/apk/AndroidFullLegacyFat/debug`
 ## Aller plus loin
 
 * Remplacer le fichier `../resources/rendering_styles/default.render.xml` par un fichier render de son cru afin d'appliquer par défaut son style et lui donner le même nom.
+* Pour ajouter un mode de navigation, il faut modifier le fichier `../../ressources/routing/routing.xml`, copier coller un `routingProfile` et modifier les arguments `name` et éventuellement `baseProfile`. Il faudra ensuite modifier certains arguments concernant la navigation. On peut également modifier le fichier si l'on souhaite adapter le graphe routier à nos usages et aux vitesses de nos véhicules en intervention.
 * Ajouter par défaut ses données dès le lancement de l'application. On ajoute en amont son fichier dans le dossier `../../ressources/data` puis on écrit dans le fichier `build-common.gradle`
 
 ```gradle
@@ -49,9 +50,11 @@ Cette partie intégrera le fichier dans le dossier `./assets` mais ne l'intégre
 },
 ```
 
-Pour ajouter un mode de navigation, il faut modifier le fichier `../../ressources/routing/routing.xml`, copier coller un `routingProfile` et modifier les arguments `name` et éventuellement `baseProfile`. Il faudra ensuite modifier certains arguments concernant la navigation.
+Nous avons opté pour une autre solution. Dans le commit `30f23eac4a9083786c2dc54a35fcbc7071292a8d`, on constate qu'on a choisi de mettre en place un serveur qui distribue la donnée aux utilisateurs. Lorsque l'utilisateur veut télécharger la donnée, plutôt que de pointer vers le serveur d'OsmAnd, il va pointer sur le serveur qu'on aura monté au préalable avec la donnée compressée avec le format zip.
 
 ## Mise en place d'un bouton intervention
+
+**La fonctionnalité présentée ci-dessous n'existe plus. Pour la réactiver, il faut annuller les commit `c11d931f9e26342fd24022ae3824fef6f46ad4b6`,  `01726d825bd77204ad8d51341d9315d9a4ef21a2`, `c383adc9fa97f8bb7c2e7552ef3502420a949e2b` et `4dca3c6e4b54d0060b226fb1af3608d1a57f759a` qui ont annulé cette fonctionnalité. À présent, nous utilisons le renvoi d'adresse via une autre application. C'est un choix parmi d'autres.**
 
 Afin de rendre la prise en main plus fluide pour les sapeurs pompiers, un bouton intervention peut être mis en place. Il ressemble à ça:
 
@@ -84,12 +87,65 @@ L'extension d'enregistrement d'itinéraire est activé par défaut. Le logo ![17
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/RISVblIZhe4)](https://youtu.be/RISVblIZhe4)
 
- <video width="640" height="360" controls>
+<video width="640" height="360" controls>
   <source src="image/README/2025-04-04-12-49-35.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 De plus l'enregistrement d'itinéraire est activé automatiquement dès que le guidage est actif et s'arrête dès que le guidage se termine que ce soit parce qu'on est arrivé à destination ou parce que l'utilisateur a décidé d'arrêter le guidage. Dans le cas du SDIS 33, cela serait dans un but de RETEX (retour d'expérience), obtenir des données sur les vitesses de certains tronçons routier à certaines horaires, date, la justesse de la numérisation du graphe routier etc.
+
+**Nous avons choisi de désactiver cette fonctionnalité. Pour la réactiver, il faut supprimer le commit `7e356a173a8921ccd3c4fc6436218e7a9829377b `. De plus, si l'on souhaite la rendre active et fonctionnelle, on pourrait également ajouter une fonction d'envoi des fichiers GPX générés à distance. Cela nécessite d'avoir mis en place un serveur dédié à la réception de ces fichiers.**
+
+## Les dimensions des véhicules
+
+Dans le graphe routier, les dimensions du véhicule sont importante. Dans l'application, par défaut, elles ne sont pas définies mais une plage est donnée à l'utilisateur. Dans cette application, j'ai défini les dimensions du profil VSAV et truck à la place de l'utilisateur et j'ai modifié les plages de valeur afin qu'elle correspondent à des véhicules opérationnels.
+
+Le profil VSAV correspont au véhicule VSAV et est défini par défaut à 3.5T, 2.10m de large, 6m de long et 2.70m de haut. Seul le poids est modifiable et est de 2.7T minimum.
+
+Le camion est défini 14T, 2.50m de large, 6.70m de long et 3.10m de haut. Ces valeurs correspondent à la fiche technique d'un CCF3 à vide. On peut monter les dimensions à 26T, 8.2m de long et 3.4 de haut. Ça correspond à un CCF6 armé.
+
+Les dimensions ont été définies au commit `53cbec5b2225c252ad35531f6c32903dc3cf106f`.
+
+Les plages des dimensions se modifient dans le dossier `OsmAnd\src\net\osmand\plus\settings\vehiclesize`. Dans ce dossier, chaque fichier correspond à une plage qu'on peut définir en fonction de sa flotte de véhicule.
+
+## Le bouton d'action rapide
+
+Il existe une fonctionnalité sur OsmAnd qui n'est pas active par défaut mais qu'on peut activer par défaut. Cette fonction est celle du bouton d'action rapide. Ce bouton intégre les fonctionnalités qu'on souhaite y intégrer. Je l'ai activé dans le commit `c134da15fb019363f43f7f9f2fdbcfbd5b007260` . Vous y trouverez ce json dans une variable String:
+
+```java
+String json = "[{\"actionType\":\"mapoverlay.change\",\"id\":1760952783970,\"name\":\"Sur-couches\",\"params\":" +
+		"{\"dialog\":\"true\",\"overlays\":\"[{\\\"first\\\":\\\"Satellite IGN 2024\\\",\\\"second\\\":\\\"Satellite IGN 2024\\\"}," +
+		"{\\\"first\\\":\\\"Carte operationnelle\\\",\\\"second\\\":\\\"Carte operationnelle\\\"}," +
+		"{\\\"first\\\":\\\"OsmAnd (online tiles)\\\",\\\"second\\\":\\\"OsmAnd (online tiles)\\\"}]\"}}," +
+		"{\"actionType\":\"trip.recording.startpause\",\"id\":1760952783973,\"params\":{}}," +
+		"{\"actionType\":\"finish.trip.recording\",\"id\":1760952783975,\"params\":{}}," +
+		"{\"actionType\":\"mapillary.showhide\",\"id\":1760952783976,\"params\":{}}," +
+		"{\"actionType\":\"photo.note\",\"id\":1761118376425,\"name\":\"Ajouter - Note photo\",\"params\":{}}," +
+		"{\"actionType\":\"parking.add\",\"id\":1761119265473,\"name\":\"Ajouter - Place de stationnement\",\"params\":{}}]";
+```
+
+Chaque objet actionType correspond à une fonction qu'on intégre. Pour traduire j'ai demandé d'intégrer dans le bouton d'action rapide:
+
+1. La sélection de la sur-couches à activer("Satellite IGN 2024", "Carte operationnelle" et "OsmAnd (online tiles)"). Pour ajouter des données, je renvoie à la partie *Aller plus loin*. Il faudra cette fois-ci envoyer un fichier metadata dans le dossier tiles des fichiers d'applications. Ce fichier est un fichier texte contenant un flux WMTS.
+2. Le démarage et pause de l'enregistrement d'itinéraire
+3. La fin de l'enregistrement d'itinéraire
+4. Montrer/Cacher le plugin Mapillary
+5. La prise de note photo
+6. L'ajout d'une place de stationnement
+
+![1765288643042](image/README/1765288643042.png)
+
+*Les boutons d'enregistrements ne sont pas actifs dans l'exemple ci-dessus et c'est normal*.
+
+## Les widgets
+
+Dans la classe d'énumération WidgetType contenu dans le fichier `OsmAnd\src\net\osmand\plus\views\mapwidgets\WidgetType.java`, il y a tous les widgets disponibles dans l'application.
+
+Pour les activer par défaut, on va sur `OsmAnd\src\net\osmand\plus\settings\backend\WidgetsAvailabilityHelper.java`. Pour rendre son widget actif, on l'intègre dans la fonction `regWidgetAvailability(WidgetType, Applicationmode)`. Pour qu'il soit ensuite visible par défaut pour l'utilisateur, on l'intégre dans la fonction `regWidgetVisibility(WidgetType, Applicationmode)`.
+
+![1765292224366](image/README/1765292224366.png)
+
+Par défaut, on a intégré RADIUS_RULER(Règle de mesure par rayon) et GPS_INFO(Information GPS).
 
 OsmAnd (OSM Automated Navigation Directions)
 --------------------------------------------
