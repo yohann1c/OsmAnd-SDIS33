@@ -20,7 +20,7 @@ import net.osmand.util.MapUtils
 import net.osmand.wiki.WikiCoreHelper
 import net.osmand.wiki.WikiCoreHelper.OsmandApiFeatureData
 import java.util.Collections
-import kotlin.math.min
+
 
 object NearbyPlacesHelper {
 	private lateinit var app: OsmandApplication
@@ -45,9 +45,10 @@ object NearbyPlacesHelper {
 			}
 
 			override fun onFinish(result: List<OsmandApiFeatureData>) {
-				val newListSize = min(result.size, PLACES_LIMIT)
+
 				dataCollection = result.filter { !Algorithms.isEmpty(it.properties.photoTitle) }
-					.subList(0, newListSize)
+				val newListSize = minOf(result.size,PLACES_LIMIT, dataCollection!!.size)
+				dataCollection = dataCollection!!.subList(0, newListSize)
 				dataCollection?.let {
 					for (image in it) {
 						val wikiImage = WikiCoreHelper.getImageData(image.properties.photoTitle)
