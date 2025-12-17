@@ -47,8 +47,8 @@ object NearbyPlacesHelper {
 			override fun onFinish(result: List<OsmandApiFeatureData>) {
 
 				dataCollection = result.filter { !Algorithms.isEmpty(it.properties.photoTitle) }
-				val newListSize = minOf(result.size,PLACES_LIMIT, dataCollection!!.size)
-				dataCollection = dataCollection!!.subList(0, newListSize)
+				val newListSize = minOf(result.size, PLACES_LIMIT, dataCollection?.size ?: 0)
+				dataCollection = dataCollection?.take(newListSize) ?: emptyList()
 				dataCollection?.let {
 					for (image in it) {
 						val wikiImage = WikiCoreHelper.getImageData(image.properties.photoTitle)
